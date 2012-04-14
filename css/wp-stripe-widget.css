@@ -1,0 +1,33 @@
+.wp-stripe-recent {
+
+}
+
+.wp-stripe-recent .stripe-item {
+    min-height:70px;
+    position:relative;
+    margin:5px 0;
+}
+
+.wp-stripe-recent .stripe-item img.avatar {
+    position:absolute;
+    top:4px;
+    left:0;
+    width:50px;
+    height:50px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wp-stripe-recent .stripe-item .stripe-recent-comment {
+    padding-left:60px;
+}
+
+.wp-stripe-recent .stripe-item .stripe-recent-name {
+    margin-top:0;
+    font-weight:bold;
+}
+
+.wp-stripe-recent .stripe-item .stripe-recent-content {
+    color:#777;
+}
