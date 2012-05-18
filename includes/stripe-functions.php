@@ -173,7 +173,9 @@ function wp_stripe_charge_initiate() {
                 update_post_meta( $post_id, 'wp-stripe-currency', strtoupper($currency));
                 update_post_meta( $post_id, 'wp-stripe-fee', $fee);
 
-                // TODO Add Project or Plan Post ID
+                // Update Project
+
+                // wp_stripe_update_project_transactions( 'add', $project_id , $post_id );
 
             }
 

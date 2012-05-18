@@ -4,17 +4,17 @@ Plugin Name: WP Stripe
 Plugin URI: http://wordpress.org/extend/plugins/wp-stripe/
 Description: Integration of the payment system Stripe as an alternative to PayPal.
 Author: Noel Tock
-Version: 1.3.2
+Version: 1.3.3
 Author URI: http://www.noeltock.com
 */
 
 // Defines
 // -----------------------------------------------------
 
-define ( 'WP_STRIPE_VERSION', '1.3.2' );
+define ( 'WP_STRIPE_VERSION', '1.3.3' );
 define ( 'WP_STRIPE_PATH',  WP_PLUGIN_URL . '/' . end( explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) ) );
 
-// Load Lib Files - https://github.com/stripe/stripe-php
+// Load PHP Lib - https://github.com/stripe/stripe-php
 // -----------------------------------------------------
 
 include_once('stripe-php/lib/Stripe.php');
@@ -24,10 +24,12 @@ include_once('stripe-php/lib/Stripe.php');
 
 include_once('includes/stripe-cpt.php');
 include_once('includes/stripe-options-transactions.php');
-include_once('includes/stripe-options-projects.php');
 include_once('includes/stripe-options.php');
 include_once('includes/stripe-functions.php');
 include_once('includes/stripe-display.php');
+
+// In Progress
+// include_once('includes/stripe-options-projects.php');
 
 // Select correct API Key
 // -----------------------------------------------------
@@ -100,28 +102,22 @@ function load_wp_stripe_admin_css() {
     wp_enqueue_style('stripe-css', WP_STRIPE_PATH . '/css/wp-stripe-admin.css');
 }
 
-// Add Thickbox on Posts/Pages that use shortcode
+// Add Thickbox to all Pages
 // -----------------------------------------------------
 
 function wp_stripe_thickbox() {
-    global $post;
-    if (is_singular() && strpos($post->post_content,'stripe') !== false) {
-        wp_enqueue_script('thickbox');
-        wp_enqueue_style('stripe-thickbox', WP_STRIPE_PATH . '/css/wp-stripe-thickbox.css');
-    }
+    wp_enqueue_script('thickbox');
+    wp_enqueue_style('stripe-thickbox', WP_STRIPE_PATH . '/css/wp-stripe-thickbox.css');
 }
 add_action('wp_print_styles','wp_stripe_thickbox');
 
 function wp_stripe_thickbox_imgs() {
-    global $post;
-    if (is_singular() && strpos($post->post_content,'stripe') !== false) {
-        $thickbox_path = get_option('siteurl') . '/wp-includes/js/thickbox/';
-        $stripe_path = WP_STRIPE_PATH . '/images/';
-        echo "<script type=\"text/javascript\">\n";
-        echo "	var tb_pathToImage = \"${thickbox_path}loadingAnimation.gif\";\n";
-        echo "	var tb_closeImage = \"${stripe_path}thickbox_close.png\";\n";
-        echo "</script>\n";
-    }
+    $thickbox_path = get_option('siteurl') . '/wp-includes/js/thickbox/';
+    $stripe_path = WP_STRIPE_PATH . '/images/';
+    echo "<script type=\"text/javascript\">\n";
+    echo "	var tb_pathToImage = \"${thickbox_path}loadingAnimation.gif\";\n";
+    echo "	var tb_closeImage = \"${stripe_path}thickbox_close.png\";\n";
+    echo "</script>\n";
 }
 add_action('wp_footer', 'wp_stripe_thickbox_imgs');
 

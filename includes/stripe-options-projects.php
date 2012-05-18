@@ -1,5 +1,48 @@
 <?php
 
+/**
+ * Update Project Transactions Array
+ *
+ * @param $action either 'add' or 'remove'
+ * @param $post_id ID of Stripe Project (custom post type)
+ * @param $trx_id ID of Individual Transactions (custom post type)
+ */
+function wp_stripe_update_project_transactions( $action, $post_id, $trx_id) {
+
+    // Get & update transactions list associated with Project
+
+    $transactions = get_post_meta( $post_id, 'wp-stripe-project-transactions' );
+
+    if ( $action == 'add' ) {
+
+        array_push($transactions, $trx_id);
+
+    } else {
+
+        $position = array_search( $trx_id, $transactions );
+        unset( $transactions[$position] );
+
+    }
+
+    update_post_meta( $post_id, 'wp-stripe-project-transactions', $transactions);
+
+    // Update transactions total
+
+    foreach ( $transactions as $transaction ) {
+
+        $amount = get_post_meta( $transaction, 'wp-stripe-amount' );
+        $sum .= $amount;
+
+    }
+
+    update_post_meta( $post_id, 'wp-stripe-project-funded', $sum );
+
+}
+
+
+/**
+ * Projects - Display projects within options page
+ */
 function wp_stripe_options_display_projects() {
 
         // Query Custom Post Types

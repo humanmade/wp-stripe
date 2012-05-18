@@ -161,7 +161,7 @@ function wp_stripe_options_page() {
 
         <ul id="wp-stripe-tabs-nav">
             <li><a href="#wp-stripe-tab-transactions">Transactions</a></li>
-            <!-- <li><a href="#wp-stripe-tab-projects">Projects</a></li> -->
+         <!--   <li><a href="#wp-stripe-tab-projects">Projects</a></li> -->
             <li><a href="#wp-stripe-tab-settings">Settings</a></li>
             <li><a href="#wp-stripe-tab-about">About</a></li>
         </ul>
@@ -203,7 +203,7 @@ function wp_stripe_options_page() {
 
         </div>
 
-        <!-- TODO Complete Projects
+<!--
 
         <div id="wp-stripe-tab-projects">
 
@@ -239,7 +239,7 @@ function wp_stripe_options_page() {
 
         </div>
 
-        -->
+-->
 
         <div id="wp-stripe-tab-settings">
 

@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Display Stripe JS Code
+ * Display Stripe JS Code (including additional validation checks)
  *
  * @since 1.0
  *
  */
-
 function wp_stripe_js() {
 
     // Get API Key
@@ -32,10 +31,8 @@ function wp_stripe_js() {
 
     function stripeResponseHandler(status, response) {
         if (response.error) {
-            console.log(status);
-            console.log(response);
             // re-enable the submit button
-            jQuery('.stripe-submit-button').removeAttr("disabled");
+            jQuery('.stripe-submit-button').prop("disabled", false).css("opacity","1.0");
             // show the errors on the form
             jQuery(".payment-errors").show().html(response.error.message);
         } else {
@@ -44,7 +41,6 @@ function wp_stripe_js() {
             var token = response['id'];
             // insert the token into the form so it gets submitted to the server
             form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-
             // and submit
             form$.get(0).submit();
         }
@@ -55,11 +51,11 @@ function wp_stripe_js() {
     jQuery(document).ready(function() {
         jQuery("#wp-stripe-payment-form").submit(function(event) {
 
-            jQuery(".payment-errors").hide();
+            jQuery(".wp-stripe-notification").hide();
 
             // disable the submit button to prevent repeated clicks
 
-            jQuery('.stripe-submit-button').attr("disabled", "disabled");
+            jQuery('.stripe-submit-button').prop("disabled", true).css("opacity","0.4");
 
             var amount = jQuery('.wp-stripe-card-amount').val() * 100; //amount you want to charge in cents
 
@@ -74,6 +70,7 @@ function wp_stripe_js() {
             // prevent the form from submitting with the default action
 
             return false;
+
         });
     });
 
@@ -114,25 +111,6 @@ function wp_stripe_js() {
                 }
             });
 
-            // Change Submit button after Click
-
-            // TODO Needs to revert upon fail
-
-            /*
-
-            jQuery('form#wp-stripe-payment-form button[type="submit"]').click(function() {
-                var stripeheight = jQuery(this).height();
-                var stripewidth = jQuery(this).width();
-                console.log(stripeheight);
-                console.log(stripewidth);
-                jQuery(this).css('display', 'none');
-                jQuery('form#wp-stripe-payment-form .stripe-spinner').css('display', 'block');
-                jQuery('form#wp-stripe-payment-form .stripe-spinner').width(stripewidth);
-                jQuery('form#wp-stripe-payment-form .stripe-spinner').height(stripeheight);
-
-            });
-
-            */
 
     });
 
