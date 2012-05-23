@@ -65,6 +65,13 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 
 == Changelog ==
 
+= 1.3.3 =
+
+* Updated Stripe PHP
+* Allow button shortcode anywhere on website (as opposed to only on page)
+* Better submit state
+* Notification Fix
+
 = 1.3.2 =
 
 * Remove function
