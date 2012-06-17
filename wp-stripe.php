@@ -4,14 +4,14 @@ Plugin Name: WP Stripe
 Plugin URI: http://wordpress.org/extend/plugins/wp-stripe/
 Description: Integration of the payment system Stripe as an alternative to PayPal.
 Author: Noel Tock
-Version: 1.3.3
+Version: 1.4
 Author URI: http://www.noeltock.com
 */
 
 // Defines
 // -----------------------------------------------------
 
-define ( 'WP_STRIPE_VERSION', '1.3.3' );
+define ( 'WP_STRIPE_VERSION', '1.4' );
 define ( 'WP_STRIPE_PATH',  WP_PLUGIN_URL . '/' . end( explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) ) );
 
 // Load PHP Lib - https://github.com/stripe/stripe-php
@@ -42,6 +42,14 @@ if ( $options['stripe_api_switch'] ) {
     Stripe::setApiKey($options['stripe_test_api']);
     } else {
     Stripe::setApiKey($options['stripe_prod_api']);
+    }
+}
+
+if ( $options['stripe_api_switch'] ) {
+    if ( $options['stripe_api_switch'] == 'Yes') {
+        define( 'WP_STRIPE_KEY', $options['stripe_test_api_publish']);
+    } else {
+        define( 'WP_STRIPE_KEY', $options['stripe_prod_api_publish']);
     }
 }
 
@@ -78,7 +86,9 @@ add_action('admin_print_scripts', 'load_wp_stripe_admin_js');
 // -----------------------------------------------------
 
 function load_wp_stripe_js() {
-	    wp_enqueue_script('stripe-js', 'https://js.stripe.com/v1/', array('jquery') );
+    wp_enqueue_script( 'stripe-js', 'https://js.stripe.com/v1/', array('jquery') );
+    wp_enqueue_script( 'wp-stripe-js', WP_STRIPE_PATH . '/js/wp-stripe.js', array('jquery') );
+    wp_localize_script( 'wp-stripe-js', 'wpstripekey', WP_STRIPE_KEY );
 }
 
 function load_wp_stripe_admin_js() {
@@ -91,8 +101,6 @@ function load_wp_stripe_css() {
     if ( $options['stripe_css_switch'] ) {
         if ( $options['stripe_css_switch'] == 'Yes') {
             wp_enqueue_style('stripe-payment-css', WP_STRIPE_PATH . '/css/wp-stripe-display.css');
-        } else {
-
         }
     }
     wp_enqueue_style('stripe-widget-css', WP_STRIPE_PATH . '/css/wp-stripe-widget.css');

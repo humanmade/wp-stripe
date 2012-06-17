@@ -96,9 +96,15 @@ function wp_stripe_charge($amount, $card, $name, $description) {
  *
  */
 
+add_action('wp_ajax_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
+
 function wp_stripe_charge_initiate() {
 
-    if ( isset($_POST['wp_stripe_form'] ) == '1') {
+        // Security Check
+
+        if ( ! wp_verify_nonce( $_POST['nonce'], 'wp-stripe-nonce' ) ) {
+            die ( 'Nonce verification failed');
+        }
 
         // Define/Extract Variables
 
@@ -128,7 +134,7 @@ function wp_stripe_charge_initiate() {
             $paid = $response->paid;
             $fee = $response->fee;
 
-            echo '<div class="wp-stripe-notification wp-stripe-success"> ' . __('Success, you just transferred ', 'wp-stripe') . '<span class="wp-stripe-currency">' . $currency . '</span> ' . $amount . ' !</div>';
+            $result =  '<div class="wp-stripe-notification wp-stripe-success"> ' . __('Success, you just transferred ', 'wp-stripe') . '<span class="wp-stripe-currency">' . $currency . '</span> ' . $amount . ' !</div>';
 
             // Save Charge
 
@@ -182,10 +188,15 @@ function wp_stripe_charge_initiate() {
         // Error
 
         } catch (Exception $e) {
-            echo '<div class="wp-stripe-notification wp-stripe-failure">' . __('Oops, something went wrong', 'wp-stripe' ) . ' (' . $e->getMessage() . ')</div>';
+            $result = '<div class="wp-stripe-notification wp-stripe-failure">' . __('Oops, something went wrong', 'wp-stripe' ) . ' (' . $e->getMessage() . ')</div>';
         }
 
-    }
+        // Return Results to JS
+
+        header( "Content-Type: application/json" );
+        echo json_encode($result);
+        exit;
+
 }
 
 ?>

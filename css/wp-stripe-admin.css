@@ -55,7 +55,7 @@ ul#wp-stripe-tabs-nav li {
 ul#wp-stripe-tabs-nav li:hover {
         -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
         -moz-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
-        box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.05), inset 0px 1px 2px 1px rgba(0, 0, 0, 0.05);
         background: #e5e5e5;
         background: -moz-linear-gradient(top,  #e5e5e5 0%, #d1d1d1 100%);
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#d1d1d1));
@@ -146,9 +146,9 @@ table.wp-stripe-transactions tr.wp-stripe-absolute:before {
         -webkit-border-radius: 7px;
         -moz-border-radius: 7px;
         border-radius: 7px;
-        -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
-        box-shadow: inset 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 table.wp-stripe-projects th,
