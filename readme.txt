@@ -4,7 +4,7 @@ Donate link: http://www.noeltock.com
 Tags: stripe, paypal, payment, pay, transfer, charge, widget, form, chargly, recurly, gravatar, avatar, recent, donation, donations, charity, transaction, money
 Requires at least: 3.1
 Tested up to: 3.4
-Stable tag: 1.4
+Stable tag: 1.4.2
 
 WP Stripe provides a payment form and recent donor widget by utilizing Stripe.com, the awesome alternative to PayPal.
 
@@ -27,6 +27,10 @@ This plugin allows you to do a number of things (see screenshots too):
 * View latest Donations/Payments in a Widget (donors can opt-in/opt-out).
 * View latest Donations/Payments in a WP-Admin (makes use of custom post types to store transactions without sensitive data, see FAQ for more information).
 
+= Using SSL (Important) =
+
+In order to process transactions in a secure manner, you need to [purchase an SSL Certificate](http://www.noeltock.com/sslcertificates/). This way consumers can purchase/donate with confidence. There are multiple plugins for then enforcing that SSL be used on your page, [here's one](http://wordpress.org/extend/plugins/wordpress-https/).
+
 = Stripe Limitations =
 
 Stripe is currently only available to users accepting payments in the US (i.e. in order to receive money, you must reside in the US), however the payee or cardholder can be anywhere in the world.
@@ -44,6 +48,10 @@ WP Stripe can be used by either calling up a simple shortcode or adding the func
 1. Go to Settings -> WP Stripe and add your API Keys (for both Test & Live)
 1. Place `[wp-stripe]` in your content or `<?php wp_stripe_form(); ?>` in your template.
 1. Add the `Stripe - Recent` widget to show recent payments/donations.
+
+= IMPORTANT (SSL) =
+
+In order to process transactions in a secure manner, you need to [purchase an SSL Certificate](http://www.noeltock.com/sslcertificates/). This way consumers can purchase/donate with confidence. There are multiple plugins for then enforcing that SSL be used on your page, [here's one](http://wordpress.org/extend/plugins/wordpress-https/).
 
 == Frequently Asked Questions ==
 
@@ -68,6 +76,17 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 3. Recent Payments Widget (largely unstyled, shows recent donations of users who opted-in)
 
 == Changelog ==
+
+= 1.4.2 =
+
+* AJAX Fix
+
+= 1.4.1 =
+
+* Security Fix
+* SSL Option for Modal
+* Updated Stripe PHP
+* Ability to page through transactions (i.e. next/previous page, not limited to 50 anymore)
 
 = 1.4.0 =
 
@@ -120,6 +139,14 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 
 == Upgrade Notice ==
 
+= 1.4.2 =
+
+* AJAX fix, important.
+
+= 1.4.1 =
+
+* Security fix and other tweaks.
+
 = 1.4.0 =
 * Number of enhancements and WP 3.4 Upgrade (no need to configure anything upon update)
 
@@ -136,4 +163,4 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 
 == Feedback & Bugs ==
 
-As this is a new plugin, there are likely to be a few issues. Kindly post any issues, questions or suggestions on the [WP-Stripe forums](http://wordpress.org/tags/wp-stripe?forum_id=10) .
+As this is a new plugin, there are likely to be a few issues. Kindly post any issues, questions or suggestions on the [WP-Stripe forums](http://wordpress.org/support/plugin/wp-stripe) .

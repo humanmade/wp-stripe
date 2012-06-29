@@ -9,14 +9,29 @@
 
 function wp_stripe_options_display_trx() {
 
+        // Paging
+
+        function retrievePage() {
+
+            if ((!isset($_POST['pagination'])) || ($_POST['pagination'] == "1")) {
+                $paged = 1;
+            } else {
+                $paged = $_POST['pagination'];
+            }
+            return intval($paged);
+
+        }
+
         // Query Custom Post Types
+
         $args = array(
             'post_type' => 'wp-stripe-trx',
             'post_status' => 'publish',
             'orderby' => 'meta_value_num',
             'meta_key' => 'wp-stripe-date',
             'order' => 'DESC',
-            'posts_per_page' => 50
+            'posts_per_page' => 10,
+            'paged' => retrievePage()
         );
 
         // - query -
@@ -79,7 +94,51 @@ function wp_stripe_options_display_trx() {
             echo '</tr>';
 
         endwhile;
+?>
+
+</table>
+
+<div style="clear:both"></div>
+
+<?php
+
+    function totalPages($transactions) {
+
+        // get total pages
+
+        if ( $transactions > 0 ) {
+            $totalpages = floor( $transactions / 10) + 1 ;
+        } else {
+            return;
+        }
+
+        return $totalpages;
 
     }
+
+    $currentpage = retrievePage();
+    $totalpages = totalPages($my_query->found_posts);
+
+    if ( $currentpage > 1 ) {
+
+        echo '<form method="POST" class="pagination">';
+        echo '<input type="hidden" name="pagination" value="' . ( retrievePage() - 1 ) . '" />';
+        echo '<input type="submit" value="Previous 10" />';
+        echo '</form>';
+
+    }
+
+    if ( $currentpage < $totalpages ) {
+
+        echo '<form method="POST" class="pagination">';
+        echo '<input type="hidden" name="pagination" value="' . ( retrievePage() + 1 ) . '" />';
+        echo '<input type="submit" value="Next 10" />';
+        echo '</form>';
+
+    }
+
+    echo ' <div style="clear:both"></div>';
+
+}
 
 ?>

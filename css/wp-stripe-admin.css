@@ -4,8 +4,8 @@
 
 h1.stripe-title {
     color:#ddd;
+    margin-bottom:20px;
 }
-
 
 #wp-stripe-tab-settings th {
     width:280px;
@@ -22,206 +22,186 @@ h1.stripe-title {
 /* jQuery Tabs */
 
 ul#wp-stripe-tabs-nav {
-        display:inline-block;
-        border-radius: 7px;
-        height:38px;
-        width:394px; /* 394/526 */
-        margin-bottom:10px;
-        -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    position:relative;
+    margin-bottom:10px;
+    height:41px;
+    overflow:visible;
+    border-bottom:1px solid #ddd
 }
 
 ul#wp-stripe-tabs-nav li {
-        text-align:center;
-        position:relative;
-        display:block;
-        float:left;
-        border-top:1px solid #fff;
-        border-left:1px solid #ffffff;
-        border-right:1px solid #cccccc;
-        border-bottom:1px solid #aaa;
-        background: #f2f2f2;
-        background: -moz-linear-gradient(top,  #f2f2f2 0%, #dddddd 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#dddddd));
-        background: -webkit-linear-gradient(top,  #f2f2f2 0%,#dddddd 100%);
-        background: -o-linear-gradient(top,  #f2f2f2 0%,#dddddd 100%);
-        background: -ms-linear-gradient(top,  #f2f2f2 0%,#dddddd 100%);
-        background: linear-gradient(top,  #f2f2f2 0%,#dddddd 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#dddddd',GradientType=0 );
-
+    text-align:center;
+    position:relative;
+    display:block;
+    float:left;
+    width:130px;
+    height:40px;
+    margin:0 10px 0 2px;
+    border-top:1px solid #cccccc;
+    border-left:1px solid #cccccc;
+    border-right:1px solid #cccccc;
+    background: #f2f2f2;
+    overflow:visible;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    opacity:0.8;
 }
 
+ul#wp-stripe-tabs-nav li.ui-state-active,
 ul#wp-stripe-tabs-nav li:hover {
-        -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
-        box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.05), inset 0px 1px 2px 1px rgba(0, 0, 0, 0.05);
-        background: #e5e5e5;
-        background: -moz-linear-gradient(top,  #e5e5e5 0%, #d1d1d1 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#d1d1d1));
-        background: -webkit-linear-gradient(top,  #e5e5e5 0%,#d1d1d1 100%);
-        background: -o-linear-gradient(top,  #e5e5e5 0%,#d1d1d1 100%);
-        background: -ms-linear-gradient(top,  #e5e5e5 0%,#d1d1d1 100%);
-        background: linear-gradient(top,  #e5e5e5 0%,#d1d1d1 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#d1d1d1',GradientType=0 );
+    background: #fff;
+    opacity:1;
 }
 
-ul#wp-stripe-tabs-nav li:first-child {
-         border-left:0px;
-         -moz-border-radius-topleft: 7px;
-         -moz-border-radius-topright: 0px;
-         -moz-border-radius-bottomright: 0px;
-         -moz-border-radius-bottomleft: 7px;
-         -webkit-border-radius: 7px 0px 0px 7px;
-         border-radius: 7px 0px 0px 7px;
- }
-
-ul#wp-stripe-tabs-nav li:last-child {
-        border-right:0px;
-        -moz-border-radius-topleft: 0px;
-        -moz-border-radius-topright: 7px;
-        -moz-border-radius-bottomright: 7px;
-        -moz-border-radius-bottomleft: 0px;
-        -webkit-border-radius: 0px 7px 7px 0px;
-        border-radius: 0px 7px 7px 0px;
+ul#wp-stripe-tabs-nav li.ui-state-active a:before,
+ul#wp-stripe-tabs-nav li:hover a:before {
+    position: absolute;
+    content: " ";
+    top:0;
+    bottom:-1px;
+    left:0;
+    right:0;
+    border-bottom:1px solid #fff;
+    z-index:200;
 }
 
 ul#wp-stripe-tabs-nav li a {
-        color:#777;
-        display:block;
-        padding:10px 15px;
-        width:100px;
-        text-decoration: none;
-        text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-        text-transform:uppercase;
-
+    position:absolute;
+    top:0;
+    left:0;
+    color:#777;
+    display:block;
+    padding:10px 15px;
+    height:20px;
+    line-height:20px;
+    width:100px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+    text-transform:uppercase;
+    overflow:visible;
 }
 
-ul#wp-stripe-tabs-nav li a:hover {
-        padding: 11px 15px 9px 15px;
-
-        }
-
 ul#wp-stripe-tabs-nav li.ui-state-active {
-
+    background: #fff;
 }
 
 ul#wp-stripe-tabs-nav li.ui-state-active a {
-        color:#555;
+    color:#555;
 }
 
 /* Transactions Table */
 
 table.wp-stripe-projects,
 table.wp-stripe-transactions {
-        margin-top:20px;
-        border-spacing: 0px;
-        width:95%;
+    margin-top:20px;
+    border-spacing: 0px;
+    width:95%;
 }
 
 table.wp-stripe-projects thead,
 table.wp-stripe-transactions thead {
-        position:relative;
-        background-color:#f2f2f2;
+    position:relative;
+    background-color:#f2f2f2;
 }
 
 table.wp-stripe-projects tr.wp-stripe-absolute,
 table.wp-stripe-transactions tr.wp-stripe-absolute {
-        position:absolute;
-        z-index:0;
-        width:95%;
-        height:38px;
+    position:absolute;
+    z-index:0;
+    width:95%;
+    height:38px;
 }
 
 table.wp-stripe-projects tr.wp-stripe-absolute:before,
 table.wp-stripe-transactions tr.wp-stripe-absolute:before {
-        content: '';
-        position:absolute;
-        z-index:2;
-        display:block;
-        top:1px;
-        left:0;
-        bottom:1px;
-        right:0;
-        -webkit-border-radius: 7px;
-        -moz-border-radius: 7px;
-        border-radius: 7px;
-        -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
-        box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
+    content: '';
+    position:absolute;
+    z-index:2;
+    display:block;
+    top:1px;
+    left:0;
+    bottom:1px;
+    right:0;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 table.wp-stripe-projects th,
 table.wp-stripe-transactions th {
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #ddd;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
 }
 
 table.wp-stripe-projects th,
 table.wp-stripe-transactions th {
-        text-align:left;
-        color:#777;
-        text-shadow: 0 1px 0px #ffffff;
+    text-align:left;
+    color:#777;
+    text-shadow: 0 1px 0px #ffffff;
 }
 
 
 table.wp-stripe-transactions td img.avatar {
-        float:left;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
+    float:left;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 table.wp-stripe-transactions td span.stripe-name {
-        line-height:30px;
-        padding-left:15px;
+    line-height:30px;
+    padding-left:15px;
 }
 
 table.wp-stripe-transactions td.stripe-comment {
-        font-style:italic;
-        font-family:serif;
-        color:#777;
-        font-size:14px;
-        line-height:14px;
+    font-style:italic;
+    font-family:serif;
+    color:#777;
+    font-size:14px;
+    line-height:14px;
 }
 
 table.wp-stripe-transactions span.stripe-netamount {
-        color:#07DE00;
-        font-weight:bold;
-        font-size:14px;
-
+    color:#07DE00;
+    font-weight:bold;
+    font-size:14px;
 }
 
 table.wp-stripe-projects th:first-child,
 table.wp-stripe-transactions th:first-child {
-        -moz-border-radius-topleft: 7px;
-        -moz-border-radius-topright: 0px;
-        -moz-border-radius-bottomright: 0px;
-        -moz-border-radius-bottomleft: 7px;
-        -webkit-border-radius: 7px 0px 0px 7px;
-        border-radius: 7px 0px 0px 7px;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -moz-border-radius-bottomleft: 7px;
+    -webkit-border-radius: 7px 0px 0px 7px;
+    border-radius: 7px 0px 0px 7px;
 }
 
 table.wp-stripe-projects th:last-child,
 table.wp-stripe-transactions th:last-child {
-        -moz-border-radius-topleft: 0px;
-        -moz-border-radius-topright: 7px;
-        -moz-border-radius-bottomright: 7px;
-        -moz-border-radius-bottomleft: 0px;
-        -webkit-border-radius: 0px 7px 7px 0px;
-        border-radius: 0px 7px 7px 0px;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-radius: 0px 7px 7px 0px;
+    border-radius: 0px 7px 7px 0px;
 }
 
 table.wp-stripe-projects tr td,
 table.wp-stripe-transactions tr td {
-        border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 table.wp-stripe-projects tr th,
 table.wp-stripe-projects tr td,
 table.wp-stripe-transactions tr th,
 table.wp-stripe-transactions tr td {
-        padding: 10px 15px;
+    padding: 10px 15px;
 }
 
 .dot-stripe-live {
@@ -301,4 +281,10 @@ table.wp-stripe-transactions tr td {
     -webkit-box-shadow: inset 0px 3px 2px 1px rgba(255, 255, 255, 0.2);
     -moz-box-shadow: inset 0px 3px 2px 1px rgba(255, 255, 255, 0.2);
     box-shadow: inset 0px 5px 3px 1px rgba(255, 255, 255, 0.2);
+}
+
+#wp-stripe-tab-transactions form.pagination {
+    display:inline;
+    float:left;
+    margin:10px 10px 0 0;
 }

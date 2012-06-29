@@ -49,16 +49,16 @@ function wp_stripe_form() {
         </div>
 
         <div class="stripe-row">
-            <input type="text" name="wp_stripe_cardn" autocomplete="off" class="card-number" placeholder="<?php _e('Card Number', 'wp-stripe'); ?> *" required />
+            <input type="text" autocomplete="off" class="card-number" placeholder="<?php _e('Card Number', 'wp-stripe'); ?> *" required />
         </div>
 
         <div class="stripe-row">
             <div class="stripe-row-left">
-                <input type="text" name="wp_stripe_cardcvc" autocomplete="off" class="card-cvc" placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *" maxlength="3" required />
+                <input type="text" autocomplete="off" class="card-cvc" placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *" maxlength="3" required />
             </div>
             <div class="stripe-row-right">
                 <span class="stripe-expiry">EXPIRY</span>
-                <select name="wp_stripe_cardem" class="card-expiry-month">
+                <select class="card-expiry-month">
                     <option value="1">01</option>
                     <option value="2">02</option>
                     <option value="3">03</option>
@@ -73,7 +73,7 @@ function wp_stripe_form() {
                     <option value="12">12</option>
                 </select>
                 <span></span>
-                <select name="wp_stripe_cardem" class="card-expiry-year">
+                <select class="card-expiry-year">
                 <?php
                     $year = date(Y,time());
                     $num = 1;

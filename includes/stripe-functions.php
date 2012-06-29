@@ -12,9 +12,15 @@
 
 function wp_stripe_shortcode( $atts ){
 
+    $options = get_option('wp_stripe_options');
+
     $settings = '?keepThis=true&TB_iframe=true&height=580&width=400';
     $path = WP_STRIPE_PATH . '/includes/stripe-iframe.php'. $settings;
-    $options = get_option('wp_stripe_options');
+    $count = 1;
+
+    if ( $options['stripe_modal_ssl'] == 'Yes' ) {
+        $path = str_replace("http", "https", $path, $count);
+    }
 
     extract(shortcode_atts(array(
         'cards' => 'true'
@@ -97,6 +103,7 @@ function wp_stripe_charge($amount, $card, $name, $description) {
  */
 
 add_action('wp_ajax_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
+add_action('wp_ajax_nopriv_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
 
 function wp_stripe_charge_initiate() {
 

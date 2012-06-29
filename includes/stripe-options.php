@@ -10,20 +10,22 @@
 function wp_stripe_options_init() {
 
         register_setting( 'wp_stripe_options', 'wp_stripe_options' );
-        add_settings_section( 'wp_stripe_main', '', 'wp_stripe_options_header', 'wp_stripe_section' );
-        add_settings_field( 'stripe_header', 'Payment Form Header', 'wp_stripe_field_header', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_recent_switch', 'Enable Recent Widget?', 'wp_stripe_field_recent', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_css_switch', 'Enable Payment Form CSS?', 'wp_stripe_field_css', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_api_switch', 'Enable Test API Environment?', 'wp_stripe_field_switch', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_test_api', 'API Secret Key (Test Environment)', 'wp_stripe_field_test', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_test_api_publish', 'API Publishable Key (Test Environment)', 'wp_stripe_field_test_publish', 'wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_prod_api', 'API Secret Key (Production Environment)', 'wp_stripe_field_prod','wp_stripe_section', 'wp_stripe_main' );
-        add_settings_field( 'stripe_prod_api_publish', 'API Publishable Key (Production Environment)', 'wp_stripe_field_prod_publish', 'wp_stripe_section', 'wp_stripe_main' );
-
+        add_settings_section( 'wp_stripe_section_main', '', 'wp_stripe_options_header', 'wp_stripe_section' );
+        add_settings_field( 'stripe_header', 'Payment Form Header', 'wp_stripe_field_header', 'wp_stripe_section', 'wp_stripe_section_main' );
+        add_settings_field( 'stripe_recent_switch', 'Enable Recent Widget?', 'wp_stripe_field_recent', 'wp_stripe_section', 'wp_stripe_section_main' );
+        add_settings_field( 'stripe_css_switch', 'Enable Payment Form CSS?', 'wp_stripe_field_css', 'wp_stripe_section', 'wp_stripe_section_main' );
+        add_settings_section( 'wp_stripe_section_api', '', 'wp_stripe_options_header_api', 'wp_stripe_section' );
+        add_settings_field( 'stripe_api_switch', 'Enable Test API Environment?', 'wp_stripe_field_switch', 'wp_stripe_section', 'wp_stripe_section_api' );
+        add_settings_field( 'stripe_test_api', 'API Secret Key (Test Environment)', 'wp_stripe_field_test', 'wp_stripe_section', 'wp_stripe_section_api' );
+        add_settings_field( 'stripe_test_api_publish', 'API Publishable Key (Test Environment)', 'wp_stripe_field_test_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
+        add_settings_field( 'stripe_prod_api', 'API Secret Key (Production Environment)', 'wp_stripe_field_prod','wp_stripe_section', 'wp_stripe_section_api' );
+        add_settings_field( 'stripe_prod_api_publish', 'API Publishable Key (Production Environment)', 'wp_stripe_field_prod_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
+        add_settings_section( 'wp_stripe_section_ssl', '', 'wp_stripe_options_header_ssl', 'wp_stripe_section' );
+        add_settings_field( 'stripe_modal_ssl', 'Enable SSL for modal pop-up?', 'wp_stripe_field_ssl', 'wp_stripe_section', 'wp_stripe_section_ssl' );
 }
 
 /**
- * Options Page Header (blank)
+ * Options Page Headers (blank)
  *
  * @since 1.0
  *
@@ -32,6 +34,28 @@ function wp_stripe_options_init() {
 function wp_stripe_options_header () {
 
     ?>
+
+    <h2>General</h2>
+
+    <?php
+
+}
+
+function wp_stripe_options_header_api () {
+
+    ?>
+
+    <h2>API</h2>
+
+    <?php
+
+}
+
+function wp_stripe_options_header_ssl () {
+
+    ?>
+
+    <h2>SSL</h2>
 
     <?php
 
@@ -78,6 +102,7 @@ function wp_stripe_field_css () {
         }
 
         echo "</select>";
+
 }
 
 function wp_stripe_field_switch () {
@@ -92,6 +117,7 @@ function wp_stripe_field_switch () {
             }
 
         echo "</select>";
+
 }
 
 function wp_stripe_field_test () {
@@ -123,6 +149,21 @@ function wp_stripe_field_prod_publish () {
         $options = get_option( 'wp_stripe_options' );
         $value = $options['stripe_prod_api_publish'];
         echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api_publish]' type='text' size='40' value='$value' />";
+
+}
+
+function wp_stripe_field_ssl () {
+
+    $options = get_option( 'wp_stripe_options' );
+    $items = array( 'Yes', 'No' );
+    echo "<select id='stripe_modal_ssl' name='wp_stripe_options[stripe_modal_ssl]'>";
+
+    foreach( $items as $item ) {
+        $selected = ($options['stripe_modal_ssl']==$item) ? 'selected="selected"' : '';
+        echo "<option value='$item' $selected>$item</option>";
+    }
+
+    echo "</select>";
 
 }
 
@@ -187,8 +228,6 @@ function wp_stripe_options_page() {
                 wp_stripe_options_display_trx();
 
             ?>
-
-            </table>
 
             <p style="color:#777">The amount of payments display is limited to 50. Log in to your Stripe account to see more.</p>
             <div style="color:#777"><div class="dot-stripe-live"></div>Live Environment (as opposed to Test API)</div>
