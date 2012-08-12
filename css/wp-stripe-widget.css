@@ -10,7 +10,7 @@
 
 .wp-stripe-recent .stripe-item img.avatar {
     position:absolute;
-    top:4px;
+    top:0;
     left:0;
     width:50px;
     height:50px;
@@ -23,8 +23,16 @@
     padding-left:60px;
 }
 
+.wp-stripe-recent .stripe-item .stripe-recent-content:before {
+    content:'\2018';
+}
+
+.wp-stripe-recent .stripe-item .stripe-recent-content:after {
+    content:'\2019';
+}
+
 .wp-stripe-recent .stripe-item .stripe-recent-name {
-    margin-top:0;
+    margin: 0 0 0.5em 0;
     font-weight:bold;
 }
 

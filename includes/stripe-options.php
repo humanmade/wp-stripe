@@ -229,7 +229,7 @@ function wp_stripe_options_page() {
 
             ?>
 
-            <p style="color:#777">The amount of payments display is limited to 50. Log in to your Stripe account to see more.</p>
+            <p style="color:#777">The amount of payments display is limited to 500. Log in to your Stripe account to see more.</p>
             <div style="color:#777"><div class="dot-stripe-live"></div>Live Environment (as opposed to Test API)</div>
             <div style="color:#777"><div class="dot-stripe-public"></div>Will show in Widget (as opposed to only being visible to you)</div>
 

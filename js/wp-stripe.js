@@ -65,7 +65,7 @@ jQuery(document).ready(function($) {
             cvc: $('.card-cvc').val(),
             exp_month: $('.card-expiry-month').val(),
             exp_year: $('.card-expiry-year').val()
-        }, amount, stripeResponseHandler);
+        }, stripeResponseHandler);
 
         // prevent the form from submitting with the default action
 

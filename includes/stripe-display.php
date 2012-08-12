@@ -54,7 +54,7 @@ function wp_stripe_form() {
 
         <div class="stripe-row">
             <div class="stripe-row-left">
-                <input type="text" autocomplete="off" class="card-cvc" placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *" maxlength="3" required />
+                <input type="text" autocomplete="off" class="card-cvc" placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *" maxlength="4" required />
             </div>
             <div class="stripe-row-right">
                 <span class="stripe-expiry">EXPIRY</span>
@@ -91,6 +91,8 @@ function wp_stripe_form() {
 
         </div>
 
+        <?php $options = get_option('wp_stripe_options'); if ( $options['stripe_recent_switch'] == 'Yes' ) { ?>
+
         <div class="stripe-row">
 
             <input type="checkbox" name="wp_stripe_public" value="public" checked="checked" /> <label><?php _e('Display on Website?', 'wp-stripe'); ?></label>
@@ -98,6 +100,10 @@ function wp_stripe_form() {
             <p class="stripe-display-comment"><?php _e('If you check this box, the name as you enter it (including the avatar from your e-mail) and comment will be shown in recent donations. Your e-mail address and donation amount will not be shown.', 'wp-stripe'); ?></p>
 
         </div>
+
+        <?php }; ?>
+
+        <div style="clear:both"></div>
 
         <input type="hidden" name="wp_stripe_form" value="1"/>
 

@@ -118,13 +118,13 @@ function wp_stripe_charge_initiate() {
         $public = $_POST['wp_stripe_public'];
         $name = $_POST['wp_stripe_name'];
         $email = $_POST['wp_stripe_email'];
-        $amount = $_POST['wp_stripe_amount'] * 100;
+        $amount = str_replace('$', '', $_POST['wp_stripe_amount']) * 100;
         $card = $_POST['stripeToken'];
 
         if ( !$_POST['wp_stripe_comment'] ) {
-            $comment = __('This transaction has no additional details', 'wp-stripe');
+            $comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . __('This transaction has no additional details', 'wp-stripe');
         } else {
-            $comment = $_POST['wp_stripe_comment'];
+            $comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . $_POST['wp_stripe_comment'];
         }
 
         // Create Charge

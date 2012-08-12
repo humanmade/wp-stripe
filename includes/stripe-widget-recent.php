@@ -67,7 +67,7 @@ echo '<div class="wp-stripe-recent">';
 
         <div class="stripe-recent-comment">
             <div class="stripe-recent-name"><?php echo $name; ?></div>
-            <div class="stripe-recent-content">"<?php echo $content; ?>"</div>
+            <div class="stripe-recent-content"><?php echo $content; ?></div>
         </div>
 
     </div>
