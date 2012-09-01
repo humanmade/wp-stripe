@@ -4,14 +4,14 @@ Plugin Name: WP Stripe
 Plugin URI: http://wordpress.org/extend/plugins/wp-stripe/
 Description: Integration of the payment system Stripe as an alternative to PayPal.
 Author: Noel Tock
-Version: 1.4.2
+Version: 1.4.6
 Author URI: http://www.noeltock.com
 */
 
 // Defines
 // -----------------------------------------------------
 
-define ( 'WP_STRIPE_VERSION', '1.4.5' );
+define ( 'WP_STRIPE_VERSION', '1.4.6' );
 define ( 'WP_STRIPE_PATH',  WP_PLUGIN_URL . '/' . end( explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) ) );
 
 // Load PHP Lib - https://github.com/stripe/stripe-php

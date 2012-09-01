@@ -4,7 +4,7 @@ Donate link: http://www.noeltock.com
 Tags: stripe, paypal, payment, pay, transfer, charge, widget, form, chargly, recurly, gravatar, avatar, recent, donation, donations, charity, transaction, money
 Requires at least: 3.1
 Tested up to: 3.4
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 
 WP Stripe provides a payment form and recent donor widget by utilizing Stripe.com, the awesome alternative to PayPal.
 
@@ -69,6 +69,17 @@ WP Stripe **DOES NOT** store credit card information. Upon form submission, a to
 
 WP Stripe is not intended to be used as an e-commerce solution, but rather to handle single payments and donations.
 
+= Does WP Stripe offer any actions or filters? =
+
+Actions
+
+* ´wp_stripe_post_successful_charge´ (after a successful charge and saving to WP)
+* ´wp_stripe_post_fail_charge´ (after a failed charge, for whatever reason)
+
+Filter
+
+* ´wp_stripe_filter_form´(to filter/edit the content of the form)
+
 == Screenshots ==
 
 1. Payment Form
@@ -76,6 +87,12 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 3. Recent Payments Widget (largely unstyled, shows recent donations of users who opted-in)
 
 == Changelog ==
+
+= 1.4.6 =
+
+* Added Actions & Filters (for successful/failed charges and form output). Will allow you toa add functions such as confirmation e-mails.
+* Fixed bug with comments/widget
+* Updated Stripe PHP
 
 = 1.4.5 =
 
@@ -155,6 +172,10 @@ WP Stripe is not intended to be used as an e-commerce solution, but rather to ha
 * Added Stripe Transaction Overview in WP-Admin
 
 == Upgrade Notice ==
+
+= 1.4.6 =
+
+* Added Actions & Hooks, and more (see changelog)
 
 = 1.4.5 =
 

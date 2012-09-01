@@ -121,7 +121,7 @@ function wp_stripe_form() {
 
     <?php
 
-    $output = ob_get_contents();
+    $output = apply_filters( 'wp_stripe_filter_form', ob_get_contents());
     ob_end_clean();
 
     return $output;

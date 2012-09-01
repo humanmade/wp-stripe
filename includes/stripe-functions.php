@@ -122,16 +122,18 @@ function wp_stripe_charge_initiate() {
         $card = $_POST['stripeToken'];
 
         if ( !$_POST['wp_stripe_comment'] ) {
-            $comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . __('This transaction has no additional details', 'wp-stripe');
+            $stripe_comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . __('This transaction has no additional details', 'wp-stripe');
+            $widget_comment = '';
         } else {
-            $comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . $_POST['wp_stripe_comment'];
+            $stripe_comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . $_POST['wp_stripe_comment'];
+            $widget_comment = $_POST['wp_stripe_comment'];
         }
 
         // Create Charge
 
         try {
 
-            $response = wp_stripe_charge($amount, $card, $name, $comment);
+            $response = wp_stripe_charge($amount, $card, $name, $stripe_comment);
 
             $id = $response->id;
             $amount = ($response->amount)/100;
@@ -151,7 +153,7 @@ function wp_stripe_charge_initiate() {
                     'ID' => '',
                     'post_type' => 'wp-stripe-trx',
                     'post_author' => 1,
-                    'post_content' => $comment,
+                    'post_content' => $widget_comment,
                     'post_title' => $id,
                     'post_status' => 'publish',
                 );
@@ -186,6 +188,10 @@ function wp_stripe_charge_initiate() {
                 update_post_meta( $post_id, 'wp-stripe-currency', strtoupper($currency));
                 update_post_meta( $post_id, 'wp-stripe-fee', $fee);
 
+                // Hook
+
+                do_action('wp_stripe_post_successful_charge', $response, $email, $stripe_comment);
+
                 // Update Project
 
                 // wp_stripe_update_project_transactions( 'add', $project_id , $post_id );
@@ -195,7 +201,10 @@ function wp_stripe_charge_initiate() {
         // Error
 
         } catch (Exception $e) {
+
             $result = '<div class="wp-stripe-notification wp-stripe-failure">' . __('Oops, something went wrong', 'wp-stripe' ) . ' (' . $e->getMessage() . ')</div>';
+            do_action('wp_stripe_post_fail_charge', $email, $e->getMessage());
+
         }
 
         // Return Results to JS
