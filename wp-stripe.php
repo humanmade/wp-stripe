@@ -12,7 +12,7 @@ Author URI: http://www.noeltock.com
 // -----------------------------------------------------
 
 define ( 'WP_STRIPE_VERSION', '1.4.6' );
-define ( 'WP_STRIPE_PATH',  WP_PLUGIN_URL . '/' . end( explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) ) );
+define ( 'WP_STRIPE_PATH',  plugins_url() . '/' . end( explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) ) );
 
 // Load PHP Lib - https://github.com/stripe/stripe-php
 // -----------------------------------------------------
