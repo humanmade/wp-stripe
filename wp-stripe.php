@@ -132,7 +132,7 @@ function wp_stripe_thickbox() {
 add_action('wp_print_styles','wp_stripe_thickbox');
 
 function wp_stripe_thickbox_imgs() {
-    $thickbox_path = get_option('siteurl') . '/wp-includes/js/thickbox/';
+    $thickbox_path = get_bloginfo('url') . '/wp-includes/js/thickbox/';
     $stripe_path = WP_STRIPE_PATH . '/images/';
     echo "<script type=\"text/javascript\">\n";
     echo "	var tb_pathToImage = \"${thickbox_path}loadingAnimation.gif\";\n";
