@@ -11,6 +11,10 @@
 
 function wp_stripe_form() {
 
+    $options = get_option('wp_stripe_options');
+
+    $currency = $options['stripe_currency'];
+    
     ob_start();
 
     ?>
@@ -45,7 +49,7 @@ function wp_stripe_form() {
     <div class="wp-stripe-card">
 
         <div class="stripe-row">
-            <input type="text" name="wp_stripe_amount" autocomplete="off" class="wp-stripe-card-amount" id="wp-stripe-card-amount" placeholder="<?php _e('Amount (USD)', 'wp-stripe'); ?> *" required />
+            <input type="text" name="wp_stripe_amount" autocomplete="off" class="wp-stripe-card-amount" id="wp-stripe-card-amount" placeholder="<?php _e('Amount (' . $currency . ')', 'wp-stripe'); ?> *" required />
         </div>
 
         <div class="stripe-row">

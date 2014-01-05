@@ -14,6 +14,7 @@ function wp_stripe_options_init() {
         add_settings_field( 'stripe_header', 'Payment Form Header', 'wp_stripe_field_header', 'wp_stripe_section', 'wp_stripe_section_main' );
         add_settings_field( 'stripe_recent_switch', 'Enable Recent Widget?', 'wp_stripe_field_recent', 'wp_stripe_section', 'wp_stripe_section_main' );
         add_settings_field( 'stripe_css_switch', 'Enable Payment Form CSS?', 'wp_stripe_field_css', 'wp_stripe_section', 'wp_stripe_section_main' );
+        add_settings_field( 'stripe_currency', 'Currency', 'wp_stripe_field_currency', 'wp_stripe_section', 'wp_stripe_section_main' );
         add_settings_section( 'wp_stripe_section_api', '', 'wp_stripe_options_header_api', 'wp_stripe_section' );
         add_settings_field( 'stripe_api_switch', 'Enable Test API Environment?', 'wp_stripe_field_switch', 'wp_stripe_section', 'wp_stripe_section_api' );
         add_settings_field( 'stripe_test_api', 'API Secret Key (Test Environment)', 'wp_stripe_field_test', 'wp_stripe_section', 'wp_stripe_section_api' );
@@ -113,6 +114,21 @@ function wp_stripe_field_switch () {
 
             foreach( $items as $item ) {
                     $selected = ($options['stripe_api_switch']==$item) ? 'selected="selected"' : '';
+                    echo "<option value='$item' $selected>$item</option>";
+            }
+
+        echo "</select>";
+
+}
+
+function wp_stripe_field_currency () {
+
+        $options = get_option( 'wp_stripe_options' );
+        $items = array( 'USD', 'CAD', 'GBP', 'EUR', 'AUD' );
+        echo "<select id='stripe_currency' name='wp_stripe_options[stripe_currency]'>";
+
+            foreach( $items as $item ) {
+                    $selected = ($options['stripe_currency']==$item) ? 'selected="selected"' : '';
                     echo "<option value='$item' $selected>$item</option>";
             }
 

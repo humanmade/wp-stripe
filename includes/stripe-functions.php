@@ -65,11 +65,9 @@ add_shortcode( 'wp-legacy-stripe', 'wp_stripe_shortcode_legacy' );
 
 function wp_stripe_charge($amount, $card, $name, $description) {
 
-    /*
-     * Currency - All amounts must be denominated in USD when creating charges with Stripe — the currency conversion happens automatically
-     */
-
-    $currency = 'usd';
+    $options = get_option('wp_stripe_options');
+    
+    $currency = $options['stripe_currency'];
 
     /*
      * Card - Token from stripe.js is provided (not individual card elements)
