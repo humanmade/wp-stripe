@@ -118,7 +118,8 @@ function wp_stripe_charge_initiate() {
         $public = $_POST['wp_stripe_public'];
         $name = $_POST['wp_stripe_name'];
         $email = $_POST['wp_stripe_email'];
-        $amount = str_replace('$', '', $_POST['wp_stripe_amount']) * 100;
+        $amount = str_replace(',', '', $_POST['wp_stripe_amount']);
+	$amount = str_replace('$', '', $amount) * 100;
         $card = $_POST['stripeToken'];
 
         if ( !$_POST['wp_stripe_comment'] ) {
