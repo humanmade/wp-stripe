@@ -77,7 +77,10 @@ function wp_stripe_defaults() {
         'stripe_api_switch'=>'Yes',
         'stripe_recent_switch'=>'Yes',
         'stripe_modal_ssl'=>'No',
-        'stripe_currency' => 'USD'
+        'stripe_currency' => 'USD',
+        'stripe_labels_on' => 'No',
+        'stripe_placeholders_on' => 'Yes',
+        'stripe_email_required' => 'No'
     );
 
     update_option('wp_stripe_options', $arr);
