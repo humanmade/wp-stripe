@@ -11,6 +11,13 @@
 
 function wp_stripe_form() {
 
+    $options = get_option('wp_stripe_options');
+
+    $currency = $options['stripe_currency'];
+    $labels_on = $options['stripe_labels_on'] == 'Yes';
+    $placeholders_on = $options['stripe_placeholders_on'] == 'Yes';
+    $email_required = $options['stripe_email_required'] == 'Yes';
+    
     ob_start();
 
     ?>
@@ -29,15 +36,18 @@ function wp_stripe_form() {
         <div class="wp-stripe-notification wp-stripe-failure payment-errors" style="display:none"></div>
 
         <div class="stripe-row">
-                <input type="text" name="wp_stripe_name" class="wp-stripe-name" placeholder="<?php _e('Name', 'wp-stripe'); ?> *" autofocus required />
+        	<?php if($labels_on) : ?><label for="wp_stripe_name"><?php _e('Name', 'wp-stripe'); ?></label><?php endif; ?>
+                <input type="text" id="wp_stripe_name" name="wp_stripe_name" class="wp-stripe-name" <?php if($placeholders_on) : ?>placeholder="<?php _e('Name', 'wp-stripe'); ?> *"<?php endif;?> autofocus required />
         </div>
 
         <div class="stripe-row">
-                <input type="email" name="wp_stripe_email" class="wp-stripe-email" placeholder="<?php _e('E-mail', 'wp-stripe'); ?>" />
+	        <?php if($labels_on) : ?><label for="wp_stripe_email"><?php _e('Email', 'wp-stripe'); ?></label><?php endif; ?>
+                <input type="email" id="wp_stripe_email" name="wp_stripe_email" class="wp-stripe-email" <?php if($placeholders_on) : ?>placeholder="<?php _e('E-mail', 'wp-stripe'); ?><?php echo $email_required ? ' *' : ''?>"<?php endif; ?> <?php echo $email_required ? ' required' : ''?> />
         </div>
 
         <div class="stripe-row">
-                <textarea name="wp_stripe_comment" class="wp-stripe-comment" placeholder="<?php _e('Comment', 'wp-stripe'); ?>"></textarea>
+	        <?php if($labels_on) : ?><label for="wp_stripe_comment"><?php _e('Comment', 'wp-stripe'); ?></label><?php endif; ?>
+                <textarea id="wp_stripe_comment" name="wp_stripe_comment" class="wp-stripe-comment" <?php if($placeholders_on) : ?>placeholder="<?php _e('Comment', 'wp-stripe'); ?>"<?php endif; ?>></textarea>
         </div>
 
     </div>
@@ -45,20 +55,23 @@ function wp_stripe_form() {
     <div class="wp-stripe-card">
 
         <div class="stripe-row">
-            <input type="text" name="wp_stripe_amount" autocomplete="off" class="wp-stripe-card-amount" id="wp-stripe-card-amount" placeholder="<?php _e('Amount (USD)', 'wp-stripe'); ?> *" required />
+	    <?php if($labels_on) : ?><label for="wp_stripe_amount"><?php _e('Amount (' . $currency . ')', 'wp-stripe'); ?></label><?php endif; ?>
+            <input type="text" id="wp_stripe_amount" name="wp_stripe_amount" autocomplete="off" class="wp-stripe-card-amount" id="wp-stripe-card-amount" <?php if($placeholders_on) : ?>placeholder="<?php _e('Amount (' . $currency . ')', 'wp-stripe'); ?> *"<?php endif; ?> required />
         </div>
 
         <div class="stripe-row">
-            <input type="text" autocomplete="off" class="card-number" placeholder="<?php _e('Card Number', 'wp-stripe'); ?> *" required />
+            <?php if($labels_on) : ?><label for="card-number"><?php _e('Card Number', 'wp-stripe'); ?></label><?php endif; ?>
+            <input type="text" id="card-number" autocomplete="off" class="card-number" <?php if($placeholders_on) : ?>placeholder="<?php _e('Card Number', 'wp-stripe'); ?> *"<?php endif; ?> required />
         </div>
 
         <div class="stripe-row">
             <div class="stripe-row-left">
-                <input type="text" autocomplete="off" class="card-cvc" placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *" maxlength="4" required />
+            	<?php if($labels_on) : ?><label for="card-cvc"><?php _e('CVC Number', 'wp-stripe'); ?></label><?php endif; ?>
+                <input type="text" id="card-cvc" autocomplete="off" class="card-cvc" <?php if($placeholders_on) : ?>placeholder="<?php _e('CVC Number', 'wp-stripe'); ?> *"<?php endif; ?> maxlength="4" required />
             </div>
             <div class="stripe-row-right">
-                <span class="stripe-expiry">EXPIRY</span>
-                <select class="card-expiry-month">
+                <label for="card-expiry" class="stripe-expiry">Expiry</label>
+                <select id="card-expiry" class="card-expiry-month">
                     <option value="1">01</option>
                     <option value="2">02</option>
                     <option value="3">03</option>
@@ -116,7 +129,7 @@ function wp_stripe_form() {
     </div>
 
     <div class="wp-stripe-poweredby">Payments powered by <a href="http://wordpress.org/extend/plugins/wp-stripe" target="_blank">WP-Stripe</a>. No card information is stored on this server.</div>
-
+    
     <!-- End WP-Stripe -->
 
     <?php

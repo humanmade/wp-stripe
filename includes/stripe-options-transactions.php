@@ -56,6 +56,7 @@ function wp_stripe_options_display_trx() {
             $cleantime = date('H:i', $date);
             $amount = $custom["wp-stripe-amount"][0];
             $fee = ($custom["wp-stripe-fee"][0])/100;
+            $currency = $custom['wp-stripe-currency'][0];
             $net = round($amount - $fee,2);
 
             echo '<tr>';
@@ -81,7 +82,7 @@ function wp_stripe_options_display_trx() {
 
             // Received
 
-            $received = '<span class="stripe-netamount"> + ' . $net . '</span> (-' . $fee . ')';
+            $received = '<span class="stripe-netamount"> + ' . $net . '</span> ' . $currency . ' (-' . $fee . ')';
 
             // Content
 
