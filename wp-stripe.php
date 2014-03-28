@@ -136,12 +136,12 @@ function wp_stripe_thickbox() {
 add_action('wp_print_styles','wp_stripe_thickbox');
 
 function wp_stripe_thickbox_imgs() {
-    $thickbox_path = get_bloginfo('url') . '/wp-includes/js/thickbox/';
+    $thickbox_path = get_bloginfo('site_url') . '/wp-includes/js/thickbox/';
     $stripe_path = WP_STRIPE_PATH . '/images/';
-    echo "<script type=\"text/javascript\">\n";
-    echo "	var tb_pathToImage = \"${thickbox_path}loadingAnimation.gif\";\n";
-    echo "	var tb_closeImage = \"${stripe_path}thickbox_close.png\";\n";
-    echo "</script>\n";
+    echo '<script type="text/javascript">' . "\n";
+    echo '	var tb_pathToImage = "'. $stripe_path .'loadingAnimation.gif";' . "\n";
+    echo '	var tb_closeImage = "'. $stripe_path .'thickbox_close.png";' . "\n";
+    echo '</script>' . "\n";
 }
 add_action('wp_footer', 'wp_stripe_thickbox_imgs');
 
