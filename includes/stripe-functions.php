@@ -19,7 +19,7 @@ function wp_stripe_shortcode( $atts ){
     $count = 1;
 
     if ( $options['stripe_modal_ssl'] == 'Yes' ) {
-        $path = str_replace("http", "https", $path, $count);
+        $path = str_replace("http://", "https://", $path, $count);
     }
 
     extract(shortcode_atts(array(
