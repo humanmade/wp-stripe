@@ -23,6 +23,8 @@ jQuery(document).ready(function($) {
 
             $('.stripe-submit-button').prop("disabled", false).css("opacity","1.0");
             $(".payment-errors").show().html(response.error.message);
+            $('.stripe-submit-button .spinner').fadeOut("slow");
+            $('.stripe-submit-button span').removeClass('spinner-gap');
 
         } else {
 
@@ -41,7 +43,7 @@ jQuery(document).ready(function($) {
 
                     $('.wp-stripe-details').prepend(response);
                     $('.stripe-submit-button').prop("disabled", false).css("opacity","1.0");
-                    $('.stripe-submit-button .spinner').fadeOut("slow");
+                    å$('.stripe-submit-button .spinner').fadeOut("slow");
                     $('.stripe-submit-button span').removeClass('spinner-gap');
                     resetStripeForm();
 
