@@ -276,7 +276,10 @@ function wp_stripe_options_page() {
         <div id="wp-stripe-tab-transactions">
 
             <table class="wp-stripe-transactions">
-              <thead><tr class="wp-stripe-absolute"></tr><tr>
+            
+              <thead>
+
+              <tr>
 
                   <th style="width:44px;"><div class="dot-stripe-live"></div><div class="dot-stripe-public"></div></th>
                   <th style="width:200px;">Person</th>
