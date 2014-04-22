@@ -41,6 +41,8 @@ jQuery(document).ready(function($) {
 
                     $('.wp-stripe-details').prepend(response);
                     $('.stripe-submit-button').prop("disabled", false).css("opacity","1.0");
+                    $('.stripe-submit-button .spinner').fadeOut("slow");
+                    $('.stripe-submit-button span').removeClass('spinner-gap');
                     resetStripeForm();
 
                 }
@@ -56,6 +58,8 @@ jQuery(document).ready(function($) {
         $(".wp-stripe-notification").hide();
 
         $('.stripe-submit-button').prop("disabled", true).css("opacity","0.4");
+        $('.stripe-submit-button .spinner').fadeIn("slow");
+        $('.stripe-submit-button span').addClass('spinner-gap');
 
         var amount = $('.wp-stripe-card-amount').val() * 100; //amount you want to charge in cents
 
