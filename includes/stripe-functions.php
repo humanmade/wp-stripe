@@ -126,15 +126,20 @@ function wp_stripe_charge_initiate() {
 
 			$response = wp_stripe_charge( $amount, $card, $name, $stripe_comment );
 
+			error_log( var_export( $response, true ) );
+
 			$id       = $response->id;
 			$amount   = $response->amount / 100;
 			$currency = $response->currency;
 			$created  = $response->created;
 			$live     = $response->livemode;
 			$paid     = $response->paid;
-			$fee      = $response->fee;
 
-			$result =  '<div class="wp-stripe-notification wp-stripe-success"> ' . sprint_f( __( 'Success, you just transferred %s', 'wp-stripe' ), '<span class="wp-stripe-currency">' . esc_html( $currency ) . '</span> ' . esc_html( $amount ) ) . ' !</div>';
+			if ( isset( $response->fee ) ) {
+				$fee  = $response->fee;
+			}
+
+			$result =  '<div class="wp-stripe-notification wp-stripe-success"> ' . sprintf( __( 'Success, you just transferred %s', 'wp-stripe' ), '<span class="wp-stripe-currency">' . esc_html( $currency ) . '</span> ' . esc_html( $amount ) ) . ' !</div>';
 
 			// Save Charge
 			if ( $paid === true ) {
@@ -170,9 +175,10 @@ function wp_stripe_charge_initiate() {
 				update_post_meta( $post_id, 'wp-stripe-date', $created );
 				update_post_meta( $post_id, 'wp-stripe-amount', $amount );
 				update_post_meta( $post_id, 'wp-stripe-currency', strtoupper( $currency ) );
-				update_post_meta( $post_id, 'wp-stripe-fee', $fee );
 
-				// Hook
+				if ( isset( $fee ) )
+					update_post_meta( $post_id, 'wp-stripe-fee', $fee );
+
 				do_action( 'wp_stripe_post_successful_charge', $response, $email, $stripe_comment );
 
 				// Update Project

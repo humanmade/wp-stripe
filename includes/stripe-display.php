@@ -101,7 +101,7 @@ function wp_stripe_form() {
 
 						while ( $num <= 7 ) { ?>
 
-							<option value="<?php echo esc_attr( $year ); ?>"><?php esc_html( $year ); ?></option>
+							<option value="<?php echo esc_attr( $year ); ?>"><?php echo esc_html( $year ); ?></option>
 
 							<?php
 							$year++;

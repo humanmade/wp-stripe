@@ -8,29 +8,29 @@
  */
 function wp_stripe_options_init() {
 
-		register_setting( 'wp_stripe_options', 'wp_stripe_options' );
+	register_setting( 'wp_stripe_options', 'wp_stripe_options' );
 
-		add_settings_section( 'wp_stripe_section_main', '', 'wp_stripe_options_header', 'wp_stripe_section' );
+	add_settings_section( 'wp_stripe_section_main', '', 'wp_stripe_options_header', 'wp_stripe_section' );
 
-		add_settings_field( 'stripe_header', 'Payment Form Header', 'wp_stripe_field_header', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_recent_switch', 'Enable Recent Widget?', 'wp_stripe_field_recent', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_css_switch', 'Enable Payment Form CSS?', 'wp_stripe_field_css', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_labels_on', 'Enable Payment Form Labels?', 'wp_stripe_field_labels', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_placeholders_on', 'Enable Payment Form Placeholders?', 'wp_stripe_field_placeholders', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_email_required', 'Is Email A Required Field?', 'wp_stripe_field_email_required', 'wp_stripe_section', 'wp_stripe_section_main' );
-		add_settings_field( 'stripe_currency', 'Currency', 'wp_stripe_field_currency', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_header', 'Payment Form Header', 'wp_stripe_field_header', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_recent_switch', 'Enable Recent Widget?', 'wp_stripe_field_recent', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_css_switch', 'Enable Payment Form CSS?', 'wp_stripe_field_css', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_labels_on', 'Enable Payment Form Labels?', 'wp_stripe_field_labels', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_placeholders_on', 'Enable Payment Form Placeholders?', 'wp_stripe_field_placeholders', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_email_required', 'Is Email A Required Field?', 'wp_stripe_field_email_required', 'wp_stripe_section', 'wp_stripe_section_main' );
+	add_settings_field( 'stripe_currency', 'Currency', 'wp_stripe_field_currency', 'wp_stripe_section', 'wp_stripe_section_main' );
 
-		add_settings_section( 'wp_stripe_section_api', '', 'wp_stripe_options_header_api', 'wp_stripe_section' );
+	add_settings_section( 'wp_stripe_section_api', '', 'wp_stripe_options_header_api', 'wp_stripe_section' );
 
-		add_settings_field( 'stripe_api_switch', 'Enable Test API Environment?', 'wp_stripe_field_switch', 'wp_stripe_section', 'wp_stripe_section_api' );
-		add_settings_field( 'stripe_test_api', 'API Secret Key (Test Environment)', 'wp_stripe_field_test', 'wp_stripe_section', 'wp_stripe_section_api' );
-		add_settings_field( 'stripe_test_api_publish', 'API Publishable Key (Test Environment)', 'wp_stripe_field_test_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
-		add_settings_field( 'stripe_prod_api', 'API Secret Key (Production Environment)', 'wp_stripe_field_prod','wp_stripe_section', 'wp_stripe_section_api' );
-		add_settings_field( 'stripe_prod_api_publish', 'API Publishable Key (Production Environment)', 'wp_stripe_field_prod_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
+	add_settings_field( 'stripe_api_switch', 'Enable Test API Environment?', 'wp_stripe_field_switch', 'wp_stripe_section', 'wp_stripe_section_api' );
+	add_settings_field( 'stripe_test_api', 'API Secret Key (Test Environment)', 'wp_stripe_field_test', 'wp_stripe_section', 'wp_stripe_section_api' );
+	add_settings_field( 'stripe_test_api_publish', 'API Publishable Key (Test Environment)', 'wp_stripe_field_test_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
+	add_settings_field( 'stripe_prod_api', 'API Secret Key (Production Environment)', 'wp_stripe_field_prod','wp_stripe_section', 'wp_stripe_section_api' );
+	add_settings_field( 'stripe_prod_api_publish', 'API Publishable Key (Production Environment)', 'wp_stripe_field_prod_publish', 'wp_stripe_section', 'wp_stripe_section_api' );
 
-		add_settings_section( 'wp_stripe_section_ssl', '', 'wp_stripe_options_header_ssl', 'wp_stripe_section' );
+	add_settings_section( 'wp_stripe_section_ssl', '', 'wp_stripe_options_header_ssl', 'wp_stripe_section' );
 
-		add_settings_field( 'stripe_modal_ssl', 'Enable SSL for modal pop-up?', 'wp_stripe_field_ssl', 'wp_stripe_section', 'wp_stripe_section_ssl' );
+	add_settings_field( 'stripe_modal_ssl', 'Enable SSL for modal pop-up?', 'wp_stripe_field_ssl', 'wp_stripe_section', 'wp_stripe_section_ssl' );
 
 }
 
@@ -73,9 +73,10 @@ function wp_stripe_field_recent () {
 	$options = get_option( 'wp_stripe_options' );
 	$items = array( 'Yes', 'No' ); ?>
 
-	<select id="stripe_api_switch" name="wp_stripe_options[stripe_recent_switch]">
+	<select id="stripe_recent_switch" name="wp_stripe_options[stripe_recent_switch]">
 
 	<?php foreach( $items as $item ) {
+
 		$selected = $options['stripe_recent_switch'] === $item ? 'selected="selected"' : ''; ?>
 
 		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
@@ -91,9 +92,10 @@ function wp_stripe_field_css () {
 	$options = get_option( 'wp_stripe_options' );
 	$items = array( 'Yes', 'No' ); ?>
 
-	<select id="stripe_api_switch" name="wp_stripe_options[stripe_css_switch]">
+	<select id="stripe_css_switch" name="wp_stripe_options[stripe_css_switch]">
 
 	<?php foreach( $items as $item ) {
+
 		$selected = $options['stripe_css_switch'] === $item ? 'selected="selected"' : ''; ?>
 
 		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
@@ -106,126 +108,153 @@ function wp_stripe_field_css () {
 
 function wp_stripe_field_labels () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$items = array( 'Yes', 'No' ); ?>
+	$options = get_option( 'wp_stripe_options' );
+	$items = array( 'Yes', 'No' ); ?>
 
-		<select id="stripe_labels_on" name="wp_stripe_options[stripe_labels_on]">
+	<select id="stripe_labels_on" name="wp_stripe_options[stripe_labels_on]">
 
-		<?php foreach( $items as $item ) {
-			$selected = ($options['stripe_labels_on']==$item) ? 'selected="selected"' : '';
-			echo "<option value='$item' $selected>$item</option>";
-		}
+	<?php foreach( $items as $item ) {
 
-		echo "</select>";
+		$selected = $options['stripe_labels_on'] === $item ? 'selected="selected"' : ''; ?>
 
-}
+		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+	<?php } ?>
+
+	</select>
+
+<?php }
 
 function wp_stripe_field_placeholders () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$items = array( 'Yes', 'No' );
-		echo "<select id='stripe_placeholders_switch' name='wp_stripe_options[stripe_placeholders_on]'>";
+	$options = get_option( 'wp_stripe_options' );
+	$items = array( 'Yes', 'No' ); ?>
 
-		foreach( $items as $item ) {
-			$selected = ($options['stripe_placeholders_on']==$item) ? 'selected="selected"' : '';
-			echo "<option value='$item' $selected>$item</option>";
-		}
+	<select id="stripe_placeholders_switch" name="wp_stripe_options[stripe_placeholders_on]">
 
-		echo "</select>";
+	<?php foreach( $items as $item ) {
 
-}
+		$selected = $options['stripe_placeholders_on'] === $item ? 'selected="selected"' : ''; ?>
+
+		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+	<?php } ?>
+
+	</select>
+
+<?php }
 
 function wp_stripe_field_email_required () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$items = array( 'Yes', 'No' );
-		echo "<select id='stripe_email_required' name='wp_stripe_options[stripe_email_required]'>";
+	$options = get_option( 'wp_stripe_options' );
+	$items = array( 'Yes', 'No' ); ?>
 
-		foreach( $items as $item ) {
-			$selected = ($options['stripe_email_required']==$item) ? 'selected="selected"' : '';
-			echo "<option value='$item' $selected>$item</option>";
-		}
+	<select id="stripe_email_required" name="wp_stripe_options[stripe_email_required]">
 
-		echo "</select>";
+	<?php foreach( $items as $item ) {
 
-}
+		$selected = $options['stripe_email_required'] === $item ? 'selected="selected"' : ''; ?>
+
+		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+	<?php } ?>
+
+	</select>
+
+<?php }
 
 function wp_stripe_field_switch () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$items = array( 'Yes', 'No' );
-		echo "<select id='stripe_api_switch' name='wp_stripe_options[stripe_api_switch]'>";
+	$options = get_option( 'wp_stripe_options' );
+	$items = array( 'Yes', 'No' ); ?>
 
-			foreach( $items as $item ) {
-					$selected = ($options['stripe_api_switch']==$item) ? 'selected="selected"' : '';
-					echo "<option value='$item' $selected>$item</option>";
-			}
+	<select id="stripe_api_switch" name="wp_stripe_options[stripe_api_switch]">
 
-		echo "</select>";
+		<?php foreach( $items as $item ) {
 
-}
+			$selected = $options['stripe_api_switch'] === $item ? 'selected="selected"' : ''; ?>
+
+			<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+		<?php } ?>
+
+	</select>
+
+<?php }
 
 function wp_stripe_field_currency () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$items = array( 'USD', 'CAD', 'GBP', 'EUR', 'AUD' );
-		echo "<select id='stripe_currency' name='wp_stripe_options[stripe_currency]'>";
+	$options = get_option( 'wp_stripe_options' );
+	$items = array( 'USD', 'CAD', 'GBP', 'EUR', 'AUD' ); ?>
 
-			foreach( $items as $item ) {
-					$selected = ($options['stripe_currency']==$item) ? 'selected="selected"' : '';
-					echo "<option value='$item' $selected>$item</option>";
-			}
+	<select id="stripe_currency" name="wp_stripe_options[stripe_currency]">
 
-		echo "</select>";
+		<?php foreach( $items as $item ) {
 
-}
+			$selected = $options['stripe_currency'] === $item ? 'selected="selected"' : ''; ?>
+
+			<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+		<?php } ?>
+
+	</select>
+
+<?php }
 
 function wp_stripe_field_test () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$value = $options['stripe_test_api'];
-		echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api]' class='code' type='text' size='40' value='$value' />";
+	$options = get_option( 'wp_stripe_options' );
+	$value = $options['stripe_test_api']; ?>
 
-}
+	<input id="setting_api" name="wp_stripe_options[stripe_test_api]" class="code" type="text" size="40" value="<?php echo esc_attr( $value ); ?>" />
+
+<?php }
 
 function wp_stripe_field_test_publish () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$value = $options['stripe_test_api_publish'];
-		echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api_publish]' class='code' type='text' size='40' value='$value' />";
+	$options = get_option( 'wp_stripe_options' );
+	$value = $options['stripe_test_api_publish']; ?>
 
-}
+	<input id="setting_api" name="wp_stripe_options[stripe_test_api_publish]" class="code" type="text" size="40" value="<?php echo esc_attr( $value ); ?>" />
+
+<?php }
 
 function wp_stripe_field_prod () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$value = $options['stripe_prod_api'];
-		echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api]' class='code' type='text' size='40' value='$value' />";
+	$options = get_option( 'wp_stripe_options' );
+	$value = $options['stripe_prod_api']; ?>
 
-}
+	<input id="setting_api" name="wp_stripe_options[stripe_prod_api]" class="code" type="text" size="40" value="<?php echo esc_attr( $value ); ?>" />
+
+<?php }
 
 function wp_stripe_field_prod_publish () {
 
-		$options = get_option( 'wp_stripe_options' );
-		$value = $options['stripe_prod_api_publish'];
-		echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api_publish]'' class='code' type='text' size='40' value='$value' />";
+	$options = get_option( 'wp_stripe_options' );
+	$value = $options['stripe_prod_api_publish']; ?>
 
-}
+	<input id="setting_api" name="wp_stripe_options[stripe_prod_api_publish]" class="code" type="text" size="40" value="<?php echo esc_attr( $value ); ?>" />
+
+<?php }
 
 function wp_stripe_field_ssl () {
 
 	$options = get_option( 'wp_stripe_options' );
-	$items = array( 'Yes', 'No' );
-	echo "<select id='stripe_modal_ssl' name='wp_stripe_options[stripe_modal_ssl]'>";
+	$items = array( 'Yes', 'No' ); ?>
 
-	foreach( $items as $item ) {
-		$selected = ($options['stripe_modal_ssl']==$item) ? 'selected="selected"' : '';
-		echo "<option value='$item' $selected>$item</option>";
-	}
+	<select id="stripe_modal_ssl" name="wp_stripe_options[stripe_modal_ssl]">
 
-	echo "</select>";
+	<?php foreach( $items as $item ) {
 
-}
+		$selected = ($options['stripe_modal_ssl']==$item) ? 'selected="selected"' : ''; ?>
+
+		<option value="<?php echo esc_attr( $item ); ?>" <?php echo $selected; ?>><?php echo esc_html( $item ); ?></option>
+
+	<?php } ?>
+
+	</select>
+
+<?php }
 
 /**
  * Register Options Page
@@ -233,12 +262,9 @@ function wp_stripe_field_ssl () {
  * @since 1.0
  *
  */
-
 function wp_stripe_add_page() {
-
-		add_options_page( 'WP Stripe', 'WP Stripe', 'manage_options', 'wp_stripe', 'wp_stripe_options_page' );
-
-	}
+	add_options_page( 'WP Stripe', 'WP Stripe', 'manage_options', 'wp_stripe', 'wp_stripe_options_page' );
+}
 
 /**
  * Create Options Page Content
@@ -246,14 +272,12 @@ function wp_stripe_add_page() {
  * @since 1.0
  *
  */
-
-function wp_stripe_options_page() {
-	?>
+function wp_stripe_options_page() { ?>
 
 	<script type="text/javascript">
-		jQuery(function() {
-			jQuery("#wp-stripe-tabs").tabs();
-		});
+		jQuery( function() {
+			jQuery( '#wp-stripe-tabs' ).tabs();
+		} );
 	</script>
 
 	<div id="wp-stripe-tabs">
@@ -286,11 +310,7 @@ function wp_stripe_options_page() {
 
 			  </tr></thead>
 
-			<?php
-
-				wp_stripe_options_display_trx();
-
-			?>
+			<?php wp_stripe_options_display_trx(); ?>
 
 			<p style="color:#777">The amount of payments display is limited to 500. Log in to your <a href="https://manage.stripe.com/dashboard">Stripe dashboard</a> to see more.</p>
 			<div style="color:#777"><div class="dot-stripe-live"></div>Live Environment (as opposed to Test API)</div>
@@ -323,13 +343,13 @@ function wp_stripe_options_page() {
 
 					// Content
 
-					echo '<td><div class="progress-stripe-wrap"><div class="progress-stripe-value" style="width:40px"></div></div></td>';
-					echo '<td>' . $person . '</td>';
-					echo '<td>' . $received . '</td>';
-					echo '<td>' . $cleandate . ' - ' . $cleantime . '</td>';
-					echo '<td class="stripe-comment">"' . $content . '"</td>';
+					//echo '<td><div class="progress-stripe-wrap"><div class="progress-stripe-value" style="width:40px"></div></div></td>';
+					//echo '<td>' . $person . '</td>';
+					//echo '<td>' . $received . '</td>';
+					//echo '<td>' . $cleandate . ' - ' . $cleantime . '</td>';
+					//echo '<td class="stripe-comment">"' . $content . '"</td>';
 
-					echo '</tr>';
+					//echo '</tr>';
 
 
 					//endwhile;
@@ -349,7 +369,7 @@ function wp_stripe_options_page() {
 				<?php settings_fields( 'wp_stripe_options' ); ?>
 				<?php do_settings_sections( 'wp_stripe_section' ); ?>
 				<br />
-				<input name="Submit" type="submit" class="button button-primary button-large" value="<?php esc_attr_e('Save Changes'); ?>" />
+				<input name="Submit" type="submit" class="button button-primary button-large" value="<?php _e( 'Save Changes', 'wp-stripe' ); ?>" />
 			</form>
 
 			<p style="margin-top:20px;color:#777">I highly suggest you test payments using the <strong>Test Environment</strong> first. You can use the following details:</p>
@@ -369,46 +389,33 @@ function wp_stripe_options_page() {
 
 	</div>
 
-<?php
-}
-
+<?php }
 
 function wp_stripe_delete_tests() {
 
-	if ( isset($_POST['wp_stripe_delete_tests'] ) == '1') {
+	if ( isset( $_POST['wp_stripe_delete_tests'] ) && $_POST['wp_stripe_delete_tests'] === '1' ) {
 
-		// Query Custom Post Types
-		$args = array(
+		$test_transactions = new WP_query( array(
 			'post_type' => 'wp-stripe-trx',
 			'post_status' => 'publish',
 			'posts_per_page' => 500
-		);
+		) );
 
-		// Query
-		$my_query = null;
-		$my_query = new WP_query( $args );
-
-		while ( $my_query->have_posts() ) : $my_query->the_post();
-
-			// Meta
-			$custom = get_post_custom( get_the_ID() );
-			$id = ( $my_query->post->ID );
-			$live = $custom["wp-stripe-live"][0];
+		while ( $test_transactions->have_posts() ) : $test_transactions->the_post();
 
 			// Delete Post
-			if ( $live == 'TEST' ) {
-				wp_delete_post( $id, true );
+			if ( get_post_meta( get_the_id(), 'wp-stripe-live', true ) === 'TEST' ) {
+				var_dump( the_title() );
+				wp_delete_post( get_the_id(), true );
 			}
 
 		endwhile;
 
 		wp_redirect( wp_get_referer() );
+
 		exit;
 
 	}
 
 }
-
 add_action( 'admin_init', 'wp_stripe_delete_tests');
-
-?>
