@@ -30,7 +30,7 @@ function wp_stripe_shortcode( $atts ){
         $payments = '<div id="wp-stripe-types"></div>';
     }
 
-    return '<a class="thickbox" id="wp-stripe-modal-button" title="' . $options['stripe_header'] . '" href="' . $path . '">' . $options['stripe_header'] . '</a>' . $payments;
+    return '<a class="thickbox" id="wp-stripe-modal-button" title="' . $options['stripe_header'] . '" href="' . $path . '"><span>' . $options['stripe_header'] . '</span></a>' . $payments;
 
 }
 add_shortcode( 'wp-stripe', 'wp_stripe_shortcode' );

@@ -3,39 +3,107 @@
 */
 
 #wp-stripe-wrap {
-        display:block;
-        padding:10px;
-        margin:0px;
-        width: 400px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    display:block;
+    padding:10px;
+    margin:0px;
+    width: 400px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 /* Payment Form Link */
 
 #wp-stripe-modal-button {
-        margin:20px 0;
-        padding: 8px 15px;
-        min-width:100px;
-        display:inline-block;
-        text-align:center;
-        font-weight: bold;
-        font-size: 12px;
-        background: #1275FF;
-        border: 1px solid #155FB0;
-        color: white;
-        text-decoration: none;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#77B7FF), to(#017AFF));
-        background-image: -moz-linear-gradient(top, #77B7FF, #017AFF);
-        background-image: -o-linear-gradient(top, #77B7FF, #017AFF);
-        -webkit-box-shadow: inset 0 1px 0 #98c9ff;
-        -moz-box-shadow: inset 0 1px 0 #98c9ff;
-        box-shadow: inset 0 1px 0 #98c9ff;
-        -o-border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        cursor: pointer; cursor: hand;
+    overflow: hidden;
+    display: inline-block;
+    visibility: visible!important;
+    background-image: -webkit-linear-gradient(#28a0e5,#015e94);
+    background-image: -moz-linear-gradient(#28a0e5,#015e94);
+    background-image: -ms-linear-gradient(#28a0e5,#015e94);
+    background-image: -o-linear-gradient(#28a0e5,#015e94);
+    background-image: -webkit-linear-gradient(#28a0e5,#015e94);
+    background-image: -moz-linear-gradient(#28a0e5,#015e94);
+    background-image: -ms-linear-gradient(#28a0e5,#015e94);
+    background-image: -o-linear-gradient(#28a0e5,#015e94);
+    background-image: linear-gradient(#28a0e5,#015e94);
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    padding: 1px;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    -o-box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    cursor: pointer; cursor: hand;
+}
+
+#wp-stripe-modal-button:not(:disabled):active {
+    background: #005d93;
+}
+
+#wp-stripe-modal-button span {
+    display: block;
+    position: relative;
+    padding: 0 12px;
+    height: 30px;
+    line-height: 30px;
+    background: #1275ff;
+    background-image: -webkit-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -moz-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -ms-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -o-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -webkit-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -moz-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -ms-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: -o-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    -ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    -o-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#wp-stripe-modal-button:not(:disabled):active span {
+    color: #eee;
+    background: #008cdd;
+    background-image: -webkit-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -moz-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -ms-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -o-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -webkit-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -moz-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -ms-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: -o-linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    background-image: linear-gradient(#008cdd,#008cdd 85%,#239adf);
+    -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+    -ms-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+    -o-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
 }
 
 #wp-stripe-types {
