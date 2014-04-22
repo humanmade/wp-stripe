@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 
                     $('.wp-stripe-details').prepend(response);
                     $('.stripe-submit-button').prop("disabled", false).css("opacity","1.0");
-                    å$('.stripe-submit-button .spinner').fadeOut("slow");
+                    $('.stripe-submit-button .spinner').fadeOut("slow");
                     $('.stripe-submit-button span').removeClass('spinner-gap');
                     resetStripeForm();
 
