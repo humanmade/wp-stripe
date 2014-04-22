@@ -106,11 +106,15 @@ function wp_stripe_form() {
 
         <?php $options = get_option('wp_stripe_options'); if ( $options['stripe_recent_switch'] == 'Yes' ) { ?>
 
+        <div class="wp-stripe-meta">
+
         <div class="stripe-row">
 
             <input type="checkbox" name="wp_stripe_public" value="public" checked="checked" /> <label><?php _e('Display on Website?', 'wp-stripe'); ?></label>
 
             <p class="stripe-display-comment"><?php _e('If you check this box, the name as you enter it (including the avatar from your e-mail) and comment will be shown in recent donations. Your e-mail address and donation amount will not be shown.', 'wp-stripe'); ?></p>
+
+        </div>
 
         </div>
 
