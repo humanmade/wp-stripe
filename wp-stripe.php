@@ -12,14 +12,9 @@ Author URI: http://hmn.md
 // Defines
 // -----------------------------------------------------
 
-function wp_stripe_init() {
-	$plugin_data = get_plugin_data( __FILE__ );
-	define( 'WP_STRIPE_VERSION', $plugin_data['Version'] );
-}
-add_action( 'admin_init', 'wp_stripe_init' );
-
 define( 'WP_STRIPE_PATH',  plugin_dir_path( __FILE__ ) );
 define( 'WP_STRIPE_URL', plugin_dir_url(  __FILE__  ) );
+define( 'WP_STRIPE_VERSION', '1.5' );
 
 // Load PHP Lib - https://github.com/stripe/stripe-php
 // -----------------------------------------------------
@@ -36,6 +31,8 @@ require_once( WP_STRIPE_PATH . 'includes/stripe-options-transactions.php' );
 require_once( WP_STRIPE_PATH . 'includes/stripe-options.php' );
 require_once( WP_STRIPE_PATH . 'includes/stripe-functions.php' );
 require_once( WP_STRIPE_PATH . 'includes/stripe-display.php' );
+require_once( WP_STRIPE_PATH . 'includes/stripe-rewrite.php' );
+
 
 // In Progress
 // require_once('includes/stripe-options-projects.php');
