@@ -5,7 +5,7 @@ Plugin Name: WP Stripe
 Plugin URI: http://wordpress.org/extend/plugins/wp-stripe/
 Description: Integration of the payment system Stripe as an alternative to PayPal.
 Author: Human Made Limited
-Version: 1.5 Alpha
+Version: 1.5
 Author URI: http://hmn.md
 */
 
