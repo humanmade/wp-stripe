@@ -120,7 +120,7 @@ function wp_stripe_form() {
 
         <input type="hidden" name="wp_stripe_form" value="1"/>
 
-        <button type="submit" class="stripe-submit-button"><?php _e('Submit Payment', 'wp-stripe'); ?></button>
+        <button type="submit" class="stripe-submit-button"><span><?php _e('Submit Payment', 'wp-stripe'); ?></span></button>
         <div class="stripe-spinner"></div>
 
 

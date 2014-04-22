@@ -12,7 +12,8 @@
 
 /* Payment Form Link */
 
-#wp-stripe-modal-button {
+#wp-stripe-modal-button,
+form#wp-stripe-payment-form .stripe-submit-button {
     overflow: hidden;
     display: inline-block;
     visibility: visible!important;
@@ -50,11 +51,13 @@
     cursor: pointer; cursor: hand;
 }
 
-#wp-stripe-modal-button:not(:disabled):active {
+#wp-stripe-modal-button:not(:disabled):active,
+form#wp-stripe-payment-form .stripe-submit-button:not(:disabled):active {
     background: #005d93;
 }
 
-#wp-stripe-modal-button span {
+#wp-stripe-modal-button span,
+form#wp-stripe-payment-form .stripe-submit-button span {
     display: block;
     position: relative;
     padding: 0 12px;
@@ -87,7 +90,8 @@
     border-radius: 4px;
 }
 
-#wp-stripe-modal-button:not(:disabled):active span {
+#wp-stripe-modal-button:not(:disabled):active span,
+form#wp-stripe-payment-form .stripe-submit-button:not(:disabled):active {
     color: #eee;
     background: #008cdd;
     background-image: -webkit-linear-gradient(#008cdd,#008cdd 85%,#239adf);
@@ -162,30 +166,6 @@ form#wp-stripe-payment-form .stripe-row-left,
 form#wp-stripe-payment-form .stripe-row-right {
         float:left;
         overflow:auto;
-}
-
-form#wp-stripe-payment-form .stripe-submit-button {
-        position:relative;
-        margin:10px;
-        padding: 8px 15px;
-        display:block;
-        font-weight: bold;
-        font-size: 12px;
-        background: #1275FF;
-        border: 1px solid #155FB0;
-        color: white;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#77B7FF), to(#017AFF));
-        background-image: -moz-linear-gradient(top, #77B7FF, #017AFF);
-        background-image: -o-linear-gradient(top, #77B7FF, #017AFF);
-        -webkit-box-shadow: inset 0 1px 0 #98c9ff;
-        -moz-box-shadow: inset 0 1px 0 #98c9ff;
-        box-shadow: inset 0 1px 0 #98c9ff;
-        -o-border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        cursor: pointer; cursor: hand;
 }
 
 .stripe-spinner {
