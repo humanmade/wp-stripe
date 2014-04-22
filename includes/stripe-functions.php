@@ -15,7 +15,7 @@ function wp_stripe_shortcode( $atts ){
     $options = get_option('wp_stripe_options');
 
     $settings = '?keepThis=true&TB_iframe=true&height=580&width=400';
-    $path = WP_STRIPE_PATH . '/includes/stripe-iframe.php'. $settings;
+    $path = WP_STRIPE_URL . '/includes/stripe-iframe.php'. $settings;
     $count = 1;
 
     if ( $options['stripe_modal_ssl'] == 'Yes' ) {
@@ -66,7 +66,7 @@ add_shortcode( 'wp-legacy-stripe', 'wp_stripe_shortcode_legacy' );
 function wp_stripe_charge($amount, $card, $name, $description) {
 
     $options = get_option('wp_stripe_options');
-    
+
     $currency = $options['stripe_currency'];
 
     /*

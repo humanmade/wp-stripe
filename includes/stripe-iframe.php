@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=' . get_bloginfo( 'charset') );
 
         <meta charset="utf-8">
         <title><?php _e('Stripe Payment','wp-stripe'); ?></title>
-        <link rel="stylesheet" href="<?php echo WP_STRIPE_PATH . '/css/wp-stripe-display.css'; ?>">
+        <link rel="stylesheet" href="<?php echo WP_STRIPE_URL . '/css/wp-stripe-display.css'; ?>">
 
         <script type="text/javascript">
             //<![CDATA[
@@ -28,7 +28,7 @@ header('Content-Type: text/html; charset=' . get_bloginfo( 'charset') );
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
         <script src="https://js.stripe.com/v1/"></script>
-        <script src="<?php echo WP_STRIPE_PATH . '/js/wp-stripe.js'; ?>" ></script>
+        <script src="<?php echo WP_STRIPE_URL . '/js/wp-stripe.js'; ?>" ></script>
 
     </head>
 
