@@ -188,7 +188,7 @@ function wp_stripe_field_test () {
 
         $options = get_option( 'wp_stripe_options' );
         $value = $options['stripe_test_api'];
-        echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api]' type='text' size='40' value='$value' />";
+        echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api]' class='code' type='text' size='40' value='$value' />";
 
 }
 
@@ -196,7 +196,7 @@ function wp_stripe_field_test_publish () {
 
         $options = get_option( 'wp_stripe_options' );
         $value = $options['stripe_test_api_publish'];
-        echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api_publish]' type='text' size='40' value='$value' />";
+        echo "<input id='setting_api' name='wp_stripe_options[stripe_test_api_publish]' class='code' type='text' size='40' value='$value' />";
 
 }
 
@@ -204,7 +204,7 @@ function wp_stripe_field_prod () {
 
         $options = get_option( 'wp_stripe_options' );
         $value = $options['stripe_prod_api'];
-        echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api]' type='text' size='40' value='$value' />";
+        echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api]' class='code' type='text' size='40' value='$value' />";
 
 }
 
@@ -212,7 +212,7 @@ function wp_stripe_field_prod_publish () {
 
         $options = get_option( 'wp_stripe_options' );
         $value = $options['stripe_prod_api_publish'];
-        echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api_publish]' type='text' size='40' value='$value' />";
+        echo "<input id='setting_api' name='wp_stripe_options[stripe_prod_api_publish]'' class='code' type='text' size='40' value='$value' />";
 
 }
 
@@ -283,7 +283,8 @@ function wp_stripe_options_page() {
 
                   <th style="width:44px;"><div class="dot-stripe-live"></div><div class="dot-stripe-public"></div></th>
                   <th style="width:200px;">Person</th>
-                  <th style="width:100px;">Net Amount (Fee)</th>
+                  <th style="width:200px;">Net Amount (Fee)</th>
+                  
                   <th style="width:80px;">Date</th>
 
                   <th>Comment</th>
