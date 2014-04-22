@@ -70,6 +70,8 @@ if ( get_option( 'wp_stripe_options' ) === '' ) {
 
 function wp_stripe_defaults() {
 
+	flush_rewrite_rules();
+
 	update_option( 'wp_stripe_options', array(
 		'stripe_header'           => 'Donate',
 		'stripe_css_switch'       => 'Yes',
