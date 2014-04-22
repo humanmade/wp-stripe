@@ -1,9 +1,9 @@
 === WP Stripe ===
-Contributors: Noel_Tock
+Contributors: humanmade, Noel_Tock, willmot
 Donate link: http://www.noeltock.com
 Tags: stripe, paypal, payment, pay, transfer, charge, widget, form, chargly, recurly, gravatar, avatar, recent, donation, donations, charity, transaction, money
 Requires at least: 3.1
-Tested up to: 3.4
+Tested up to: 3.9
 Stable tag: 1.4.7
 
 WP Stripe provides a payment form and recent donor widget by utilizing Stripe.com, the awesome alternative to PayPal.
@@ -37,7 +37,7 @@ Stripe is currently only available to users accepting payments in the US (i.e. i
 
 = Updates =
 
-Follow me for updates at [@noeltock](http://www.twitter.com/noeltock)
+Follow us for updates at [@humanmadeltd](http://www.twitter.com/humanmadeltd)
 
 == Installation ==
 
@@ -87,6 +87,10 @@ Filter
 3. Recent Payments Widget (largely unstyled, shows recent donations of users who opted-in)
 
 == Changelog ==
+
+= 1.5 =
+
+* Update to latest version of Stripe PHP library
 
 = 1.4.7 =
 
