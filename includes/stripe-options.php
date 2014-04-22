@@ -276,7 +276,7 @@ function wp_stripe_options_page() {
         <div id="wp-stripe-tab-transactions">
 
             <table class="wp-stripe-transactions">
-            
+
               <thead>
 
               <tr>
@@ -304,7 +304,7 @@ function wp_stripe_options_page() {
 
             <form method="POST">
                 <input type="hidden" name="wp_stripe_delete_tests" value="1">
-                <input type="submit" value="Delete all test transactions">
+                <input type="submit" class="button" value="Delete all test transactions">
             </form>
 
         </div>
