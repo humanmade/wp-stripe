@@ -126,8 +126,6 @@ function wp_stripe_charge_initiate() {
 
 			$response = wp_stripe_charge( $amount, $card, $name, $stripe_comment );
 
-			error_log( var_export( $response, true ) );
-
 			$id       = $response->id;
 			$amount   = $response->amount / 100;
 			$currency = $response->currency;
