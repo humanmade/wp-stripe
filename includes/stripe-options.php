@@ -296,7 +296,7 @@ function wp_stripe_options_page() {
 
             ?>
 
-            <p style="color:#777">The amount of payments display is limited to 500. Log in to your Stripe account to see more.</p>
+            <p style="color:#777">The amount of payments display is limited to 500. Log in to your <a href="https://manage.stripe.com/dashboard">Stripe dashboard</a> to see more.</p>
             <div style="color:#777"><div class="dot-stripe-live"></div>Live Environment (as opposed to Test API)</div>
             <div style="color:#777"><div class="dot-stripe-public"></div>Will show in Widget (as opposed to only being visible to you)</div>
 
@@ -368,8 +368,8 @@ function wp_stripe_options_page() {
 
         <div id="wp-stripe-tab-about">
 
-            <p>This plugin was created by <a href="http://www.twitter.com/noeltock" target="_blank">@noeltock</a>, follow me for updates & WordPress goodness.</p>
-            <p>If you need any support, please use the <a href="http://wordpress.org/tags/wp-stripe?forum_id=10">forums</a>, this is the only location I will provide unpaid support. Thank you!</p>
+            <p>This plugin was orginially created by <a href="http://www.twitter.com/noeltock" target="_blank">@noeltock</a> and has now been expanded to be <a href="http://hmn.md">Human Made</a> as a whole, follow us for updates &amp; other WordPress goodness.</p>
+            <p>If you need any support, please use the <a href="http://wordpress.org/tags/wp-stripe?forum_id=10">forums</a>, this is the only location we will provide support. If you are interested in contributing or raising development issues, please visit the <a href="https://github.com/humanmade/wp-stripe">Github respository</a>. Thank you!</p>
 
     </div>
 
