@@ -353,7 +353,7 @@ function wp_stripe_options_page() {
                 <?php settings_fields( 'wp_stripe_options' ); ?>
                 <?php do_settings_sections( 'wp_stripe_section' ); ?>
                 <br />
-                <input name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
+                <input name="Submit" type="submit" class="button button-primary button-large" value="<?php esc_attr_e('Save Changes'); ?>" />
             </form>
 
             <p style="margin-top:20px;color:#777">I highly suggest you test payments using the <strong>Test Environment</strong> first. You can use the following details:</p>
