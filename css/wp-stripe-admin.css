@@ -98,6 +98,9 @@ table.wp-stripe-transactions {
     margin-top:20px;
     border-spacing: 0px;
     width:95%;
+    border: 1px solid #e5e5e5;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
 }
 
 table.wp-stripe-projects thead,
@@ -106,34 +109,9 @@ table.wp-stripe-transactions thead {
     background-color:#f2f2f2;
 }
 
-table.wp-stripe-projects tr.wp-stripe-absolute,
-table.wp-stripe-transactions tr.wp-stripe-absolute {
-    position:absolute;
-    z-index:0;
-    width:95%;
-    height:38px;
-}
-
-table.wp-stripe-projects tr.wp-stripe-absolute:before,
-table.wp-stripe-transactions tr.wp-stripe-absolute:before {
-    content: '';
-    position:absolute;
-    z-index:2;
-    display:block;
-    top:1px;
-    left:0;
-    bottom:1px;
-    right:0;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15),inset 0px 2px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
 table.wp-stripe-projects th,
 table.wp-stripe-transactions th {
+    background:#fff;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #ddd;
 }
@@ -172,24 +150,12 @@ table.wp-stripe-transactions span.stripe-netamount {
     font-size:14px;
 }
 
-table.wp-stripe-projects th:first-child,
-table.wp-stripe-transactions th:first-child {
-    -moz-border-radius-topleft: 7px;
-    -moz-border-radius-topright: 0px;
-    -moz-border-radius-bottomright: 0px;
-    -moz-border-radius-bottomleft: 7px;
-    -webkit-border-radius: 7px 0px 0px 7px;
-    border-radius: 7px 0px 0px 7px;
+table.wp-stripe-transactions tr:nth-child(even) {
+    background: #fff;   
 }
 
-table.wp-stripe-projects th:last-child,
-table.wp-stripe-transactions th:last-child {
-    -moz-border-radius-topleft: 0px;
-    -moz-border-radius-topright: 7px;
-    -moz-border-radius-bottomright: 7px;
-    -moz-border-radius-bottomleft: 0px;
-    -webkit-border-radius: 0px 7px 7px 0px;
-    border-radius: 0px 7px 7px 0px;
+table.wp-stripe-transactions tr:nth-child(odd) {
+    background: #f9f9f9;   
 }
 
 table.wp-stripe-projects tr td,
