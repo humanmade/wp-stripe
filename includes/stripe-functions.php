@@ -9,13 +9,12 @@
  * @since 1.3
  *
  */
-
 function wp_stripe_shortcode( $atts ){
 
     $options = get_option('wp_stripe_options');
 
-    $settings = '?keepThis=true&TB_iframe=true&height=580&width=400';
-    $path = WP_STRIPE_URL . '/includes/stripe-iframe.php'. $settings;
+    $settings = '?wp-stripe-iframe=truekeepThis=true&TB_iframe=true&height=580&width=400';
+    $path = home_url() . $settings;
     $count = 1;
 
     if ( $options['stripe_modal_ssl'] == 'Yes' ) {
