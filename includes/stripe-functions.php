@@ -9,27 +9,25 @@
  * @since 1.3
  *
  */
-function wp_stripe_shortcode( $atts ){
+function wp_stripe_shortcode( $atts ) {
 
-    $options = get_option('wp_stripe_options');
+	$options = get_option( 'wp_stripe_options' );
+	$url     = add_query_arg( array( 'wp-stripe-iframe' => 'true', 'keepThis' => 'true', 'TB_iframe' => 'true', 'height' => 580, 'width' => 400 ), home_url() );
+	$count   = 1;
 
-    $settings = '?wp-stripe-iframe=truekeepThis=true&TB_iframe=true&height=580&width=400';
-    $path = home_url() . $settings;
-    $count = 1;
+	if ( isset( $options['stripe_modal_ssl'] ) && $options['stripe_modal_ssl'] === 'Yes' ) {
+		$url = str_replace( 'http://', 'https://', $url, $count );
+	}
 
-    if ( $options['stripe_modal_ssl'] == 'Yes' ) {
-        $path = str_replace("http://", "https://", $path, $count);
-    }
+	extract( shortcode_atts(array(
+		'cards' => 'true'
+	), $atts ) );
 
-    extract(shortcode_atts(array(
-        'cards' => 'true'
-    ), $atts));
+	if ( $cards === 'true' )  {
+		$payments = '<div id="wp-stripe-types"></div>';
+	}
 
-    if ( $cards == 'true' )  {
-        $payments = '<div id="wp-stripe-types"></div>';
-    }
-
-    return '<a class="thickbox" id="wp-stripe-modal-button" title="' . $options['stripe_header'] . '" href="' . $path . '"><span>' . $options['stripe_header'] . '</span></a>' . $payments;
+	return '<a class="thickbox" id="wp-stripe-modal-button" title="' . esc_attr( $options['stripe_header'] ) . '" href="' . esc_url( $url ) . '"><span>' . esc_html( $options['stripe_header'] ) . '</span></a>' . $payments;
 
 }
 add_shortcode( 'wp-stripe', 'wp_stripe_shortcode' );
@@ -43,10 +41,8 @@ add_shortcode( 'wp-stripe', 'wp_stripe_shortcode' );
  * @since 1.3
  *
  */
-
 function wp_stripe_shortcode_legacy( $atts ){
-
-    return wp_stripe_form();
+	return wp_stripe_form();
 }
 add_shortcode( 'wp-legacy-stripe', 'wp_stripe_shortcode_legacy' );
 
@@ -61,30 +57,28 @@ add_shortcode( 'wp-legacy-stripe', 'wp_stripe_shortcode_legacy' );
  * @since 1.0
  *
  */
-
 function wp_stripe_charge($amount, $card, $name, $description) {
 
-    $options = get_option('wp_stripe_options');
+	$options = get_option( 'wp_stripe_options' );
 
-    $currency = $options['stripe_currency'];
+	$currency = $options['stripe_currency'];
 
-    /*
-     * Card - Token from stripe.js is provided (not individual card elements)
-     */
+	/*
+	 * Card - Token from stripe.js is provided (not individual card elements)
+	 */
+	$charge = array(
+		'card'     => $card,
+		'amount'   => $amount,
+		'currency' => $currency,
+	);
 
-    $charge = array(
-        'card' => $card,
-        'amount' => $amount,
-        'currency' => $currency,
-    );
+	if ( $description ) {
+		$charge['description'] = $description;
+	}
 
-    if ( $description ) {
-        $charge['description'] = $description;
-    }
+	$response = Stripe_Charge::create( $charge );
 
-    $response = Stripe_Charge::create($charge);
-
-    return $response;
+	return $response;
 
 }
 
@@ -98,119 +92,107 @@ function wp_stripe_charge($amount, $card, $name, $description) {
  * @since 1.0
  *
  */
-
-add_action('wp_ajax_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
-add_action('wp_ajax_nopriv_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
-
 function wp_stripe_charge_initiate() {
 
-        // Security Check
+		// Security Check
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'wp-stripe-nonce' ) ) {
+			wp_die( __( 'Nonce verification failed!', 'wp-stripe' ) );
+		}
 
-        if ( ! wp_verify_nonce( $_POST['nonce'], 'wp-stripe-nonce' ) ) {
-            die ( 'Nonce verification failed');
-        }
+		// Define/Extract Variables
+		$public = sanitize_text_field( $_POST['wp_stripe_public'] );
+		$name   = sanitize_text_field( $_POST['wp_stripe_name'] );
+		$email  = sanitize_email( $_POST['wp_stripe_email'] );
 
-        // Define/Extract Variables
+		// Strip any comments from the amount
+		$amount = str_replace( ',', '', sanitize_text_field( $_POST['wp_stripe_amount'] ) );
+		$amount = str_replace( '$', '', $amount ) * 100;
 
-        $public = $_POST['wp_stripe_public'];
-        $name = $_POST['wp_stripe_name'];
-        $email = $_POST['wp_stripe_email'];
-        $amount = str_replace(',', '', $_POST['wp_stripe_amount']);
-	$amount = str_replace('$', '', $amount) * 100;
-        $card = $_POST['stripeToken'];
+		$card = sanitize_text_field( $_POST['stripeToken'] );
 
-        if ( !$_POST['wp_stripe_comment'] ) {
-            $stripe_comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . __('This transaction has no additional details', 'wp-stripe');
-            $widget_comment = '';
-        } else {
-            $stripe_comment = __('E-mail: ', 'wp-stipe') . $_POST['wp_stripe_email'] . ' - ' . $_POST['wp_stripe_comment'];
-            $widget_comment = $_POST['wp_stripe_comment'];
-        }
+		$widget_comment = '';
 
-        // Create Charge
+		if ( empty( $_POST['wp_stripe_comment'] ) ) {
+			$stripe_comment = __( 'E-mail: ', 'wp-stipe') . sanitize_text_field( $_POST['wp_stripe_email'] ) . ' - ' . __( 'This transaction has no additional details', 'wp-stripe' );
 
-        try {
 
-            $response = wp_stripe_charge($amount, $card, $name, $stripe_comment);
+		} else {
+			$stripe_comment = __( 'E-mail: ', 'wp-stipe' ) . sanitize_text_field( $_POST['wp_stripe_email'] ) . ' - ' . sanitize_text_field( $_POST['wp_stripe_comment'] );
+			$widget_comment = sanitize_text_field( $_POST['wp_stripe_comment'] );
+		}
 
-            $id = $response->id;
-            $amount = ($response->amount)/100;
-            $currency = $response->currency;
-            $created = $response->created;
-            $live = $response->livemode;
-            $paid = $response->paid;
-            $fee = $response->fee;
+		// Create Charge
+		try {
 
-            $result =  '<div class="wp-stripe-notification wp-stripe-success"> ' . __('Success, you just transferred ', 'wp-stripe') . '<span class="wp-stripe-currency">' . $currency . '</span> ' . $amount . ' !</div>';
+			$response = wp_stripe_charge( $amount, $card, $name, $stripe_comment );
 
-            // Save Charge
+			$id       = $response->id;
+			$amount   = $response->amount / 100;
+			$currency = $response->currency;
+			$created  = $response->created;
+			$live     = $response->livemode;
+			$paid     = $response->paid;
+			$fee      = $response->fee;
 
-            if ( $paid == true ) {
+			$result =  '<div class="wp-stripe-notification wp-stripe-success"> ' . sprint_f( __( 'Success, you just transferred %s', 'wp-stripe' ), '<span class="wp-stripe-currency">' . esc_html( $currency ) . '</span> ' . esc_html( $amount ) ) . ' !</div>';
 
-                $new_post = array(
-                    'ID' => '',
-                    'post_type' => 'wp-stripe-trx',
-                    'post_author' => 1,
+			// Save Charge
+			if ( $paid === true ) {
+
+				$post_id = wp_insert_post( array(
+                    'post_type'	   => 'wp-stripe-trx',
+                    'post_author'  => 1,
                     'post_content' => $widget_comment,
-                    'post_title' => $id,
-                    'post_status' => 'publish',
-                );
+                    'post_title'   => $id,
+                    'post_status'  => 'publish',
+                ) );
 
-                $post_id = wp_insert_post( $new_post );
+				// Define Livemode
+				if ( $live ) {
+					$live = 'LIVE';
+				} else {
+					$live = 'TEST';
+				}
 
-                // Define Livemode
+				// Define Public (for Widget)
+				if ( $public === 'public' ) {
+					$public = 'YES';
+				} else {
+					$public = 'NO';
+				}
 
-                if ( $live ) {
-                    $live = 'LIVE';
-                } else {
-                    $live = 'TEST';
-                }
+				// Update Meta
+				update_post_meta( $post_id, 'wp-stripe-public', $public );
+				update_post_meta( $post_id, 'wp-stripe-name', $name );
+				update_post_meta( $post_id, 'wp-stripe-email', $email );
 
-                // Define Public (for Widget)
+				update_post_meta( $post_id, 'wp-stripe-live', $live );
+				update_post_meta( $post_id, 'wp-stripe-date', $created );
+				update_post_meta( $post_id, 'wp-stripe-amount', $amount );
+				update_post_meta( $post_id, 'wp-stripe-currency', strtoupper( $currency ) );
+				update_post_meta( $post_id, 'wp-stripe-fee', $fee );
 
-                if ( $public == 'public' ) {
-                    $public = 'YES';
-                } else {
-                    $public = 'NO';
-                }
+				// Hook
+				do_action( 'wp_stripe_post_successful_charge', $response, $email, $stripe_comment );
 
-                // Update Meta
+				// Update Project
+				// wp_stripe_update_project_transactions( 'add', $project_id , $post_id );
 
-                update_post_meta( $post_id, 'wp-stripe-public', $public);
-                update_post_meta( $post_id, 'wp-stripe-name', $name);
-                update_post_meta( $post_id, 'wp-stripe-email', $email);
+			}
 
-                update_post_meta( $post_id, 'wp-stripe-live', $live);
-                update_post_meta( $post_id, 'wp-stripe-date', $created);
-                update_post_meta( $post_id, 'wp-stripe-amount', $amount);
-                update_post_meta( $post_id, 'wp-stripe-currency', strtoupper($currency));
-                update_post_meta( $post_id, 'wp-stripe-fee', $fee);
+		// Error
+		} catch ( Exception $e ) {
 
-                // Hook
+			$result = '<div class="wp-stripe-notification wp-stripe-failure">' . sprint_f( __( 'Oops, something went wrong (%s)', 'wp-stripe' ), $e->getMessage() ) . '</div>';
+			do_action( 'wp_stripe_post_fail_charge', $email, $e->getMessage() );
 
-                do_action('wp_stripe_post_successful_charge', $response, $email, $stripe_comment);
+		}
 
-                // Update Project
-
-                // wp_stripe_update_project_transactions( 'add', $project_id , $post_id );
-
-            }
-
-        // Error
-
-        } catch (Exception $e) {
-
-            $result = '<div class="wp-stripe-notification wp-stripe-failure">' . __('Oops, something went wrong', 'wp-stripe' ) . ' (' . $e->getMessage() . ')</div>';
-            do_action('wp_stripe_post_fail_charge', $email, $e->getMessage());
-
-        }
-
-        // Return Results to JS
-
-        header( "Content-Type: application/json" );
-        echo json_encode($result);
-        exit;
+		// Return Results to JS
+		header( 'Content-Type: application/json' );
+		echo json_encode( $result );
+		exit;
 
 }
-
-?>
+add_action('wp_ajax_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
+add_action('wp_ajax_nopriv_wp_stripe_charge_initiate', 'wp_stripe_charge_initiate');
