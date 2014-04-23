@@ -90,8 +90,11 @@ Filter
 
 = 1.5 =
 
-* Tested for latest versions of WordPress & Stripe 
+* Tested for latest version of WordPress (3.9)
+* Tested for latest version of Stripe 
 * Various security fixes/enhancements
+* Enchanced submit button with progress state
+* Fixed Close button
 * Fixed UI bugs within WP-Admin
 * Update to latest version of Stripe PHP library
 * Updated ReadMe
