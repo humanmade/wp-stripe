@@ -145,7 +145,6 @@ function wp_stripe_thickbox_imgs() { ?>
 
 	<script type="text/javascript">
 		var tb_pathToImage = "<?php echo esc_js( WP_STRIPE_URL ); ?>images/loadingAnimation.gif";
-		var tb_closeImage  = "<?php echo esc_js( WP_STRIPE_URL ); ?>images/thickbox_close.png";
 	</script>
 
 <?php }
