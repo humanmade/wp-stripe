@@ -215,6 +215,19 @@ form#wp-stripe-payment-form .stripe-row-right {
         text-decoration: none;        
 }
 
+/* Close Window */
+
+#TB_closeWindowButton {
+    display: block;
+    background: url('../images/thickbox_close.png') no-repeat 0 0;
+    width: 15px;
+    height: 15px;
+}
+
+#TB_closeWindowButton:hover {
+    opacity:0.8;
+}
+
 /* Response Styling */
 
 .wp-stripe-notification {
