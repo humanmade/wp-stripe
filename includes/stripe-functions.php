@@ -187,7 +187,7 @@ function wp_stripe_charge_initiate() {
 		// Error
 		} catch ( Exception $e ) {
 
-			$result = '<div class="wp-stripe-notification wp-stripe-failure">' . sprint_f( __( 'Oops, something went wrong (%s)', 'wp-stripe' ), $e->getMessage() ) . '</div>';
+			$result = '<div class="wp-stripe-notification wp-stripe-failure">' . sprintf( __( 'Oops, something went wrong (%s)', 'wp-stripe' ), $e->getMessage() ) . '</div>';
 			do_action( 'wp_stripe_post_fail_charge', $email, $e->getMessage() );
 
 		}
